@@ -310,6 +310,34 @@ class RandomPlayerAgent(GameAgent):
         return self.get_legal_moves_action
 
 
+_TOOL_CALL_INVOKE_RE = re.compile(
+    r"<invoke\s+name\s*=\s*[\"']?([\w-]+)[\"']?\s*>(.*?)</invoke\s*>",
+    flags=re.DOTALL | re.IGNORECASE,
+)
+_TOOL_CALL_PARAM_RE = re.compile(
+    r"<parameter\s+name\s*=\s*[\"']?[\w-]+[\"']?\s*>(.*?)</parameter\s*>",
+    flags=re.DOTALL | re.IGNORECASE,
+)
+
+
+def normalize_tool_call_syntax(text: str) -> str:
+    """Rewrite tool-call style XML into the plain-text action format.
+
+    Some models (e.g. Claude 5.x) answer with
+    '<invoke name="make_move"><parameter name="move">d7d5</parameter></invoke>'
+    instead of 'make_move d7d5'. Only the first <invoke> block is kept, so a reply
+    still maps to exactly one action. Text without <invoke> is returned unchanged.
+    """
+    if not text or "<invoke" not in text.lower():
+        return text
+    match = _TOOL_CALL_INVOKE_RE.search(text)
+    if not match:
+        return text
+    name = match.group(1).strip()
+    params = [p.strip() for p in _TOOL_CALL_PARAM_RE.findall(match.group(2)) if p.strip()]
+    return " ".join([name, *params])
+
+
 class AutoReplyAgent(GameAgent):
     """
     An agent that automatically replies based on predefined actions and conditions.
@@ -392,7 +420,11 @@ class AutoReplyAgent(GameAgent):
                         if "content" in msg and isinstance(msg.get("content"), str):  # Make sure content exists
                             msg["content"] = re.sub(self.remove_text, "", msg["content"], flags=re.DOTALL)
 
-        action_choice = self.last_message_text(messages).lower().strip()
+        raw_choice = self.last_message_text(messages)
+        normalized_choice = normalize_tool_call_syntax(raw_choice)
+        if normalized_choice != raw_choice:
+            print(f"\033[93mNormalized tool-call syntax to: {normalized_choice}\033[0m")
+        action_choice = normalized_choice.lower().strip()
         reply = ""
 
         if self.get_current_board_action in action_choice:

@@ -302,7 +302,9 @@ def run(
             if enable_reflection
             else ""
         )
-        + f"- '{make_move_action} <UCI formatted move>' when you are ready to complete your turn (e.g., '{make_move_action} e2e4')"
+        + f"- '{make_move_action} <UCI formatted move>' when you are ready to complete your turn (e.g., '{make_move_action} e2e4')\n"
+        + f"Reply with plain text containing only the action, e.g. '{make_move_action} e2e4'. "
+        "Do not use XML, tags or tool-call syntax."
     )
     if chess960:
         common_prompt = (
