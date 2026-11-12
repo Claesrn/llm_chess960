@@ -66,6 +66,14 @@ uv run llm-chess960 --position 42   # specific position (0-959, 518 = standard s
 - To run Chess960 from `run_multiple_games.py` or your own script, set `llm_chess.chess960 = True` (and optionally `llm_chess.chess960_position`).
 - Stockfish supports Chess960 out of the box (python-chess enables `UCI_Chess960` automatically).
 
+Run a batch of Chess960 games:
+```
+uv run python run_multiple_games_960.py
+```
+- Settings at the top of the script: `NUM_REPETITIONS`, `CHESS960_POSITIONS` (fixed list, or `None` for random positions with a reproducible `SEED`; #518 is skipped by default), player types, `REASONING_EFFORT` and pacing.
+- Logs go to `_logs/chess960/...`; `_aggregate_results.json` also lists the start position, result and errors for each game.
+- Set `CHESS960 = False` to run the identical setup on standard chess (logged under `_logs/chess960_baseline/...`) for a like-for-like comparison.
+
 ### Multiple Games
 For benchmarking, run multiple simulations:
 ```
