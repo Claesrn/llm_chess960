@@ -1,3 +1,4 @@
+import random
 import time
 import traceback
 import chess
@@ -44,6 +45,10 @@ black_player_type = PlayerType.LLM_BLACK
 enable_reflection = False  # Whether to offer the LLM time to think and evaluate moves
 board_representation_mode = BoardRepresentation.UNICODE_ONLY  # What kind of board is printed in response to get_current_board
 rotate_board_for_white = False # Whether to rotate the Uicode board for the white player so it gets it's pieces at the bottom
+
+# Chess960 (Fischer Random) configuration
+chess960 = False  # If True, games start from a Chess960 position (see llm_chess960.py / `uv run llm-chess960`)
+chess960_position: int | None = None  # Scharnagl number 0-959 (518 = standard setup); None picks a random position per game
 
 # Game configuration
 max_game_moves = 200  # maximum number of game moves before terminating, dafault 200
@@ -110,6 +115,45 @@ dragon_time_per_move = 0.1  # Time limit (in seconds) for Dragon to think per mo
 
 board = chess.Board()
 san_moves = []
+starting_fen = chess.STARTING_FEN
+current_chess960_position: int | None = None  # Scharnagl number actually used for the current game
+
+
+def _pgn_header(result: str = "*") -> str:
+    """Builds the PGN tag section, adding Variant/SetUp/FEN tags for Chess960 games."""
+    header = (
+        f"[Event \"{'Chess960 Game' if board.chess960 else 'Chess Game'}\"]\n"
+        f"[Date \"{time.strftime('%Y.%m.%d')}\"]\n"
+        "[White \"Player White\"]\n"
+        "[Black \"Player Black\"]\n"
+        f"[Result \"{result}\"]\n"
+    )
+    if board.chess960:
+        header += (
+            "[Variant \"Chess960\"]\n"
+            "[SetUp \"1\"]\n"
+            f"[FEN \"{starting_fen}\"]\n"
+        )
+    return header + "\n"
+
+
+def _setup_board() -> None:
+    """Resets the global board to either the standard or a Chess960 starting position."""
+    global starting_fen, current_chess960_position
+    current_chess960_position = None
+    board.chess960 = chess960
+    if chess960:
+        position = chess960_position
+        if position is None:
+            position = random.randint(0, 959)
+        if not 0 <= position <= 959:
+            raise ValueError(f"chess960_position must be in 0..959, got {position}")
+        board.set_chess960_pos(position)
+        board.chess960 = True
+        current_chess960_position = position
+    else:
+        board.reset()
+    starting_fen = board.fen()
 
 def get_current_board() -> str:
     """
@@ -122,13 +166,7 @@ def get_current_board() -> str:
     elif board_representation_mode == BoardRepresentation.UNICODE_ONLY:
         return board.unicode(orientation=orientation)
     elif board_representation_mode == BoardRepresentation.UNICODE_WITH_PGN:
-        pgn_header = (
-            "[Event \"Chess Game\"]\n"
-            f"[Date \"{time.strftime('%Y.%m.%d')}\"]\n"
-            "[White \"Player White\"]\n"
-            "[Black \"Player Black\"]\n"
-            "[Result \"*\"]\n\n"
-        )
+        pgn_header = _pgn_header()
 
         pgn_moves = ""
         for i, move in enumerate(san_moves):
@@ -236,8 +274,10 @@ def run(
     # Init chess board and game state
     material_count = {"white": 0, "black": 0}
     global board, san_moves
-    board.reset()
+    _setup_board()
     san_moves.clear()
+    if chess960:
+        print(f"\033[94mChess960 start position #{current_chess960_position}: {starting_fen}\033[0m")
     winner = None
     reason = None
 
@@ -264,6 +304,15 @@ def run(
         )
         + f"- '{make_move_action} <UCI formatted move>' when you are ready to complete your turn (e.g., '{make_move_action} e2e4')"
     )
+    if chess960:
+        common_prompt = (
+            "This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, "
+            "all other rules are the same as standard chess. After castling, the king and rook end up on the same squares "
+            "as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). "
+            "Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1'), "
+            f"exactly as it appears in '{get_legal_moves_action}'.\n"
+            + common_prompt
+        )
 
     reflect_prompt = (
         "Before deciding on the next move you can reflect on your current situation, write down notes and evaluate.\n"
@@ -446,13 +495,7 @@ def run(
             result = "0-1"  # Black wins
             
         # Create PGN header
-        pgn_header = (
-            "[Event \"Chess Game\"]\n"
-            f"[Date \"{time.strftime('%Y.%m.%d')}\"]\n"
-            "[White \"Player White\"]\n"
-            "[Black \"Player Black\"]\n"
-            f"[Result \"{result}\"]\n\n"
-        )
+        pgn_header = _pgn_header(result)
         
         # Format the moves list into PGN format
         pgn_moves = ""
@@ -601,6 +644,11 @@ def run(
         material_count,
         pgn_string,
     )
+
+    if chess960:
+        game_stats["variant"] = "chess960"
+        game_stats["chess960_position"] = current_chess960_position
+        game_stats["starting_fen"] = starting_fen
 
     display_store_game_video_and_stats(game_stats, log_dir)
     return game_stats, player_white, player_black

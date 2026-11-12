@@ -54,6 +54,18 @@ uv run llm-chess
 - Default: Random Player (white) vs. LLM (black).
 - Logs saved to `_logs/` with JSON details.
 
+### Chess960 (Fischer Random)
+Run a single game from a Chess960 starting position:
+```
+uv run llm-chess960                 # random start position
+uv run llm-chess960 --position 42   # specific position (0-959, 518 = standard setup)
+```
+- Uses the same player/model settings as `llm-chess` (configured in `llm_chess.py`).
+- LLM players are told the game is Chess960; castling is given in UCI as the king moving onto its own rook's square (e.g. `e1h1`), matching the `get_legal_moves` output.
+- The PGN gets `Variant`, `SetUp` and `FEN` tags, and the JSON log adds `variant`, `chess960_position` and `starting_fen`.
+- To run Chess960 from `run_multiple_games.py` or your own script, set `llm_chess.chess960 = True` (and optionally `llm_chess.chess960_position`).
+- Stockfish supports Chess960 out of the box (python-chess enables `UCI_Chess960` automatically).
+
 ### Multiple Games
 For benchmarking, run multiple simulations:
 ```

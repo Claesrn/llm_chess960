@@ -484,7 +484,7 @@ class ChessEngineStockfishAgent(GameAgent):
 
                 b = self.board
                 if self.remove_history:
-                    b = chess.Board(b.fen())
+                    b = chess.Board(b.fen(), chess960=b.chess960)
                 result = engine.play(b, chess.engine.Limit(time=self.time_limit))
                 move = result.move
                 return f"{self.make_move_action} {move.uci()}"
@@ -542,7 +542,7 @@ class ChessEngineDragonAgent(GameAgent):
 
                 b = self.board
                 if self.remove_history:
-                    b = chess.Board(b.fen())
+                    b = chess.Board(b.fen(), chess960=b.chess960)
                 result = engine.play(b, chess.engine.Limit(time=self.time_limit))
                 move = result.move
                 return f"{self.make_move_action} {move.uci()}"

@@ -36,6 +36,7 @@ dev = [
 
 [project.scripts]
 llm-chess = "llm_chess:run"
+llm-chess960 = "llm_chess960:main"
 get-refined-csv = "data.get_refined_csv:main"
 
 [tool.setuptools]
@@ -44,6 +45,7 @@ py-modules = [
   "do_call",
   "get_run_metadata",
   "llm_chess",
+  "llm_chess960",
   "run_multiple_games",
   "termination_reasons",
   "utils",

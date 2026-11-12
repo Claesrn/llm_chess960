@@ -10,6 +10,43 @@ import chess
 from typing import Optional, Dict, Tuple
 from urllib.parse import urlsplit, urlunsplit
 
+# Newer Claude models (the 5.x generation: Opus/Sonnet/Haiku/Fable/Mythos 5+) reject
+# sampling parameters with a 400 ("`temperature` is deprecated for this model").
+# AG2's Anthropic client always sends `temperature` (defaulting to 1.0), so strip
+# temperature/top_p/top_k right before the request for those models.
+_ANTHROPIC_NO_SAMPLING_MODEL_RE = re.compile(
+    r"claude-(?:opus|sonnet|haiku|fable|mythos)-(?:[5-9]|\d{2,})(?:[-.]|$)"
+)
+_ANTHROPIC_SAMPLING_PARAMS = ("temperature", "top_p", "top_k")
+
+
+def anthropic_model_rejects_sampling_params(model: Optional[str]) -> bool:
+    """True for Claude models that return 400 when temperature/top_p/top_k are set."""
+    return bool(model) and bool(_ANTHROPIC_NO_SAMPLING_MODEL_RE.search(str(model)))
+
+
+def _patch_ag2_anthropic_sampling_params() -> None:
+    try:
+        from autogen.oai.anthropic import AnthropicClient
+    except Exception:  # anthropic extra not installed
+        return
+    original = getattr(AnthropicClient, "_prepare_anthropic_params", None)
+    if original is None or getattr(original, "_llm_chess_patched", False):
+        return
+
+    def _prepare_anthropic_params(self, params, anthropic_messages):
+        anthropic_params = original(self, params, anthropic_messages)
+        if anthropic_model_rejects_sampling_params(anthropic_params.get("model")):
+            for key in _ANTHROPIC_SAMPLING_PARAMS:
+                anthropic_params.pop(key, None)
+        return anthropic_params
+
+    _prepare_anthropic_params._llm_chess_patched = True
+    AnthropicClient._prepare_anthropic_params = _prepare_anthropic_params
+
+
+_patch_ag2_anthropic_sampling_params()
+
 # Capability mapping for model-specific features
 PROVIDER_CAPABILITIES = {
     "openai": {"reasoning_effort", "frequency_penalty", "presence_penalty"},
@@ -327,6 +364,9 @@ def get_llms(
                 "api_type": "anthropic",
                 "max_tokens": 32768,
                 "timeout": timeout,
+                # Required: the Anthropic SDK refuses non-streaming requests whose
+                # max_tokens could take longer than 10 minutes to generate.
+                "stream": True,
             }
         elif kind == "mistral":
             return {
