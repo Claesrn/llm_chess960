@@ -66,13 +66,44 @@ uv run llm-chess960 --position 42   # specific position (0-959, 518 = standard s
 - To run Chess960 from `run_multiple_games.py` or your own script, set `llm_chess.chess960 = True` (and optionally `llm_chess.chess960_position`).
 - Stockfish supports Chess960 out of the box (python-chess enables `UCI_Chess960` automatically).
 
-Run a batch of Chess960 games:
+Run a batch of Chess960 games (settings at the top of the script, or command-line flags):
 ```
-uv run python run_multiple_games_960.py
+uv run python run_multiple_games_960.py --help
 ```
-- Settings at the top of the script: `NUM_REPETITIONS`, `CHESS960_POSITIONS` (fixed list, or `None` for random positions with a reproducible `SEED`; #518 is skipped by default), player types, `REASONING_EFFORT` and pacing.
-- Logs go to `_logs/chess960/...`; `_aggregate_results.json` also lists the start position, result and errors for each game.
-- Set `CHESS960 = False` to run the identical setup on standard chess (logged under `_logs/chess960_baseline/...`) for a like-for-like comparison.
+
+#### Chess960 experiment conditions
+| Condition | Flags |
+|---|---|
+| A1 standard start through the 960 pipeline | `--positions 518` |
+| A2 fixed Chess960 sample (30 positions in `A2_POSITIONS`) | `--positions a2` |
+| B1 with `get_legal_moves` | *(default)* |
+| B2 without `get_legal_moves` | `--no-legal-moves` (consider `--max-failed-attempts 5`) |
+| C1 random opponent | `--opponent random` *(default)* |
+| C2 engine opponent | `--opponent dragon --level 3` or `--opponent stockfish --level 5` |
+| Comprehension check | `--comprehension-check` |
+| Shuffled start, not told it is Chess960 | `--no-variant-hint` (with `--positions` / `--sample`) |
+| Engine baseline (standard vs 960) | `--opponent stockfish --player stockfish --level 5` with `--positions 518` and `--positions a2` |
+
+Example (A2 × B2 × C2, 60 games = each of the 30 positions twice):
+```
+uv run python run_multiple_games_960.py --positions a2 --no-legal-moves --opponent dragon --level 3 --games 60 --comprehension-check
+```
+- Logs go to `_logs/chess960/<A>_<B>[_cc]/<category>/<model>/<timestamp>/` and are not picked up by `data/get_refined_csv.py`.
+- Each game log records `settings`, `outcome.loss_cause` (`checkmate`, `illegal_move_forfeit`, `format_forfeit`, `mixed_forfeit`, `max_turns_forfeit`, ...), per-side `illegal_attempts` (ply, FEN, move, category), first-attempt illegal counts, format normalizations and the comprehension answer.
+
+Analyse finished runs (Stockfish needed for move quality):
+```
+uv run python analyze_960.py                       # everything under _logs/chess960
+uv run python analyze_960.py --stockfish /opt/homebrew/bin/stockfish --depth 14
+```
+Writes `_analysis/games.csv` and `_analysis/conditions.csv` (per model × A × B × C, also restricted to games that passed the comprehension check): win/draw/loss rates, loss causes, illegal attempts per turn by type, first-attempt illegal rate, ACPL / blunder / mistake / inaccuracy / best-move rates for plies 1-15 and later, and performance Elo vs Dragon.
+
+Results notebook (figures + significance tests), after running `analyze_960.py`:
+```
+uv sync --extra analysis
+uv run --with jupyterlab jupyter lab analysis_960.ipynb
+```
+Covers win rate (95% Wilson CIs), loss causes, illegal moves per turn by type, first-attempt illegal rate, comprehension pass rate (and results on passing games only), move quality for plies 1-15 vs later, Elo vs Dragon, pairwise condition comparisons (Fisher / Mann-Whitney) and the engine-vs-engine baseline. Figures are saved to `_analysis/figures/`.
 
 ### Multiple Games
 For benchmarking, run multiple simulations:

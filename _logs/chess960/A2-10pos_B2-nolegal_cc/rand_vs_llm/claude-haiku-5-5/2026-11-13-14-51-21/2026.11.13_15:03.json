@@ -1,0 +1,95 @@
+{
+    "time_started": "2026.11.13_15:03",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 70,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 35,
+        "make_move_count": 35,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 35,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 35,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 0,
+        "black": 39
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 36,
+        "get_legal_moves_count": 0,
+        "make_move_count": 35,
+        "accumulated_reply_time_seconds": 871.562,
+        "model": "claude-haiku-5-5",
+        "turns": 35,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 35,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 33419,
+                "completion_tokens": 77136,
+                "total_tokens": 110555
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.13\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1\"]\n\n1. d3 e5 2. Kd2 Ng6 3. g4 Bb4+ 4. Nc3 Bxc3+ 5. Kd1 Bxe1 \n6. b3 Bb4 7. g5 h6 8. c4 hxg5 9. f4 Nxf4 10. Rc3 Bxc3 \n11. Qb1 Nh3 12. Qb2 Bxb2 13. Nf2 Nxg1 14. Bh3 Nxh3 15. b4 Nxf2+ \n16. Kd2 d6 17. b5 Ng4 18. c5 Bxb5 19. Kc2 Nxh2 20. e4 Bd4 \n21. a3 Bxc5 22. Kb2 Bxd3 23. a4 Bxe4 24. Kb3 Bd3 25. a5 Nf3 \n26. Kb2 Nd2 27. Ka2 Bb1+ 28. Kb2 Nc4+ 29. Kc3 Nxa5 30. Kd2 Nc4+ \n31. Kc1 Bd3 32. Kd1 Nb2+ 33. Ke1 Nc6 34. Kd2 Nd4 35. Ke1 Nf3# \n 0-1",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 298,
+        "starting_fen": "qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1",
+        "legal_moves_enabled": false,
+        "comprehension_check": true,
+        "chess960_prompt_hint": true,
+        "max_failed_attempts": 5,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "RANDOM_PLAYER",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 1,
+        "dragon_level": 1,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "white"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "QNRKBBRN",
+            "answer": "Black's back rank, from the a-file to the h-file, is:\n\n- a8: Queen\n- b8: Knight\n- c8: Rook\n- d8: King\n- e8: Bishop\n- f8: Bishop\n- g8: Rook\n- h8: Knight\n\nBACK_RANK: QNRKBBRN",
+            "parsed": "QNRKBBRN",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 298,
+    "starting_fen": "qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1"
+}

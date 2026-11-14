@@ -1,0 +1,100 @@
+{
+    "time_started": "2026.11.12_22:29",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 62,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 31,
+        "make_move_count": 31,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 31,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 31,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 3,
+        "black": 34
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 1,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 31,
+        "get_legal_moves_count": 2,
+        "make_move_count": 32,
+        "accumulated_reply_time_seconds": 320.474,
+        "model": "claude-haiku-5-5",
+        "turns": 31,
+        "illegal_attempts": [
+            {
+                "ply": 52,
+                "side": "black",
+                "fen": "r1b1k2r/ppp2ppp/1P6/3p4/PP4n1/2n5/3p4/R4K2 b kq - 0 26",
+                "move": "d2d1",
+                "category": "missing_promotion"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "missing_promotion": 1
+        },
+        "first_attempt_total": 31,
+        "first_attempt_illegal": 1,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 22891,
+                "completion_tokens": 58256,
+                "total_tokens": 81147
+            }
+        }
+    },
+    "pgn": "[Event \"Chess Game\"]\n[Date \"2026.11.12\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n\n1. h4 e5 2. c4 Nf6 3. g3 Nc6 4. a3 Bc5 5. b3 Nd4 \n6. b4 Bb6 7. e4 Nxe4 8. Be2 Nxe2 9. Nh3 Nxc1 10. Rf1 Nd3+ \n11. Ke2 Nexf2 12. Kf3 Qf6+ 13. Nf4 Qxf4+ 14. gxf4 Nxd1 15. c5 N1f2 \n16. h5 e4+ 17. Kg3 d5 18. Kg2 Nxf4+ 19. Kh2 Ng4+ 20. Kg1 Nxh5 \n21. Rf4 Nxf4 22. d3 Ne2+ 23. Kf1 exd3 24. Nc3 Nxc3 25. a4 d2 \n26. cxb6 d1=Q+ 27. Kg2 Qxa1 28. bxc7 Ne3+ 29. Kf3 Qf1+ 30. Kg3 Qg2+ \n31. Kh4 Qg4#  0-1",
+    "settings": {
+        "chess960": false,
+        "chess960_position": null,
+        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": true,
+        "chess960_prompt_hint": true,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "RANDOM_PLAYER",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 1,
+        "dragon_level": 1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "white"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "RNBQKBNR",
+            "answer": "Rank 8, from the a-file to the h-file, is: R, N, B, Q, K, B, N, R.\n\nBACK_RANK: RNBQKBNR",
+            "parsed": "RNBQKBNR",
+            "correct": true
+        }
+    }
+}

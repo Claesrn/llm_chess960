@@ -1,0 +1,193 @@
+{
+    "run_metadata": {
+        "metadata": {
+            "time_started_formatted": "2026.11.12_18:34",
+            "log_folder_relative": "_logs/chess960/rand_vs_llm/claude-sonnet-5-5/2026-11-12-18-34-51",
+            "num_repetitions": 10,
+            "store_individual_logs": true,
+            "python_version": "3.11.4"
+        },
+        "player_types": {
+            "white_player_type": "RANDOM_PLAYER",
+            "black_player_type": "LLM_BLACK"
+        },
+        "config": {
+            "enable_reflection": false,
+            "board_representation_mode": "UNICODE_ONLY",
+            "rotate_board_for_white": false,
+            "max_game_moves": 200,
+            "max_llm_turns": 10,
+            "max_failed_attempts": 3,
+            "throttle_delay": 1,
+            "dialog_turn_delay": 1,
+            "max_api_retries": 6,
+            "api_retry_delay": 60,
+            "random_print_board": false,
+            "remove_text": "^.*?(?:</think>|\u25c1/think\u25b7|</reasoning>)\\s*"
+        },
+        "llm_configs": {
+            "black": {
+                "model": "claude-sonnet-5-5",
+                "api_type": "anthropic",
+                "max_tokens": 32768,
+                "api_key": "REDACTED",
+                "timeout": 1800
+            }
+        }
+    },
+    "variant": "chess960",
+    "total_games": 10,
+    "white_wins": 0,
+    "black_wins": 10,
+    "draws": 0,
+    "total_moves": 432,
+    "reasons": {
+        "Checkmate": 10
+    },
+    "player_white": {
+        "name": "Random_Player",
+        "model": "",
+        "total_material": 105,
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "avg_material": 10.5,
+        "std_dev_material": 9.00925450115972
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "model": "",
+        "total_material": 378,
+        "wrong_moves": 6,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "avg_material": 37.8,
+        "std_dev_material": 3.359894178227774
+    },
+    "games": [
+        {
+            "game": 1,
+            "chess960_position": 397,
+            "starting_fen": "qrnbnkbr/pppppppp/8/8/8/8/PPPPPPPP/QRNBNKBR w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 26,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 2,
+            "chess960_position": 565,
+            "starting_fen": "rnbbknrq/pppppppp/8/8/8/8/PPPPPPPP/RNBBKNRQ w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 58,
+            "black_wrong_moves": 1,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 3,
+            "chess960_position": 177,
+            "starting_fen": "bnrbnkrq/pppppppp/8/8/8/8/PPPPPPPP/BNRBNKRQ w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 36,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 4,
+            "chess960_position": 926,
+            "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 48,
+            "black_wrong_moves": 2,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 5,
+            "chess960_position": 911,
+            "starting_fen": "rkqrnnbb/pppppppp/8/8/8/8/PPPPPPPP/RKQRNNBB w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 44,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 6,
+            "chess960_position": 45,
+            "starting_fen": "nnqbrkbr/pppppppp/8/8/8/8/PPPPPPPP/NNQBRKBR w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 44,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 7,
+            "chess960_position": 298,
+            "starting_fen": "qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 24,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 8,
+            "chess960_position": 939,
+            "starting_fen": "rkrnbqnb/pppppppp/8/8/8/8/PPPPPPPP/RKRNBQNB w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 56,
+            "black_wrong_moves": 1,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 9,
+            "chess960_position": 865,
+            "starting_fen": "bqrbkrnn/pppppppp/8/8/8/8/PPPPPPPP/BQRBKRNN w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 36,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 10,
+            "chess960_position": 793,
+            "starting_fen": "rqkbbnrn/pppppppp/8/8/8/8/PPPPPPPP/RQKBBNRN w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "number_of_moves": 60,
+            "black_wrong_moves": 2,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        }
+    ],
+    "average_moves": 43.2,
+    "std_dev_moves": 12.726175998922676
+}

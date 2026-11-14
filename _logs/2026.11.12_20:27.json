@@ -1,0 +1,136 @@
+{
+    "time_started": "2026.11.12_20:27",
+    "winner": "Random_Player",
+    "reason": "Too many wrong actions",
+    "number_of_moves": 10,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 5,
+        "make_move_count": 5,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 5,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 5,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 39,
+        "black": 39
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 7,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 6,
+        "get_legal_moves_count": 6,
+        "make_move_count": 11,
+        "accumulated_reply_time_seconds": 11.79,
+        "model": "llama3.2-cpu",
+        "turns": 5,
+        "illegal_attempts": [
+            {
+                "ply": 2,
+                "side": "black",
+                "fen": "rknbbqrn/pppppppp/8/8/8/2P5/PP1PPPPP/RKNBBQRN b KQkq - 0 1",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 4,
+                "side": "black",
+                "fen": "rknbbqrn/ppppppp1/8/7p/8/1PP5/P2PPPPP/RKNBBQRN b KQkq - 0 2",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 6,
+                "side": "black",
+                "fen": "rk1bbqrn/ppppppp1/3n4/7p/5P2/1PP5/P2PP1PP/RKNBBQRN b KQkq - 0 3",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 8,
+                "side": "black",
+                "fen": "rk1bbqrn/pppp1pp1/3n4/4p2p/5P2/1PP3N1/P2PP1PP/RKNBBQR1 b KQkq - 1 4",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 10,
+                "side": "black",
+                "fen": "rk1bbqr1/pppp1pp1/3n2n1/4p2p/5P2/1PP2QN1/P2PP1PP/RKNBB1R1 b KQkq - 3 5",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 10,
+                "side": "black",
+                "fen": "rk1bbqr1/pppp1pp1/3n2n1/4p2p/5P2/1PP2QN1/P2PP1PP/RKNBB1R1 b KQkq - 3 5",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 10,
+                "side": "black",
+                "fen": "rk1bbqr1/pppp1pp1/3n2n1/4p2p/5P2/1PP2QN1/P2PP1PP/RKNBB1R1 b KQkq - 3 5",
+                "move": "e2e4",
+                "category": "wrong_piece_on_square"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "wrong_piece_on_square": 7
+        },
+        "first_attempt_total": 5,
+        "first_attempt_illegal": 5,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0,
+            "llama3.2-cpu": {
+                "cost": 0,
+                "prompt_tokens": 11697,
+                "completion_tokens": 125,
+                "total_tokens": 11822
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.12\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"1-0\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rknbbqrn/pppppppp/8/8/8/8/PPPPPPPP/RKNBBQRN w KQkq - 0 1\"]\n\n1. c3 h5 2. b3 Nd6 3. f4 e5 4. Ng3 Ng6 5. Qf3  1-0",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 825,
+        "starting_fen": "rknbbqrn/pppppppp/8/8/8/8/PPPPPPPP/RKNBBQRN w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": false,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "RANDOM_PLAYER",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 1,
+        "dragon_level": 1
+    },
+    "outcome": {
+        "loss_cause": "illegal_move_forfeit",
+        "losing_side": "black"
+    },
+    "variant": "chess960",
+    "chess960_position": 825,
+    "starting_fen": "rknbbqrn/pppppppp/8/8/8/8/PPPPPPPP/RKNBBQRN w KQkq - 0 1"
+}

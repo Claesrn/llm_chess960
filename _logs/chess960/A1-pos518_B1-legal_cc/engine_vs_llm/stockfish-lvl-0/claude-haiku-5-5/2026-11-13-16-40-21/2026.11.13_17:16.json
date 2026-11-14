@@ -1,0 +1,163 @@
+{
+    "time_started": "2026.11.13_17:16",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 190,
+    "player_white": {
+        "name": "Chess_Engine_Stockfish_White",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 0,
+        "make_move_count": 95,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 95,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 95,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 0,
+        "black": 18
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 9,
+        "wrong_actions": 1,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 95,
+        "get_legal_moves_count": 42,
+        "make_move_count": 104,
+        "accumulated_reply_time_seconds": 1248.327,
+        "model": "claude-haiku-5-5",
+        "turns": 95,
+        "illegal_attempts": [
+            {
+                "ply": 30,
+                "side": "black",
+                "fen": "r4rk1/ppp1qpp1/3p1n1p/2b1P3/2B3P1/P1N1PQ1P/1P1B4/2KR2NR b - - 0 15",
+                "move": "f6e5",
+                "category": "piece_movement"
+            },
+            {
+                "ply": 58,
+                "side": "black",
+                "fen": "3r2k1/pp3Qp1/1bp4p/P6R/2B1p1q1/4P3/1P1B4/2KN2N1 b - - 0 29",
+                "move": "g4g1",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 66,
+                "side": "black",
+                "fen": "5R1k/pp4p1/2p4p/P7/4p3/4b3/1P1BB3/2KN2q1 b - - 0 33",
+                "move": "e5b2",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 66,
+                "side": "black",
+                "fen": "5R1k/pp4p1/2p4p/P7/4p3/4b3/1P1BB3/2KN2q1 b - - 0 33",
+                "move": "e3d2",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 88,
+                "side": "black",
+                "fen": "8/p5pk/7p/2p1q3/2Q5/3BB3/1P3R2/2KN4 b - - 6 44",
+                "move": "e5d4",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 90,
+                "side": "black",
+                "fen": "8/p4R1k/6pp/2p1q3/2Q5/3BB3/1P6/2KN4 b - - 1 45",
+                "move": "f7f1",
+                "category": "wrong_piece_on_square"
+            },
+            {
+                "ply": 96,
+                "side": "black",
+                "fen": "8/p6k/3q2pp/2p5/4BR2/2Q1B3/1P6/2KN4 b - - 7 48",
+                "move": "h7h8",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 114,
+                "side": "black",
+                "fen": "3q4/6k1/6pp/2B5/4B3/2Q5/1P6/2KN4 b - - 4 57",
+                "move": "d8g5",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 124,
+                "side": "black",
+                "fen": "8/8/4k3/3B2pp/1P1B4/2N5/8/2K5 b - - 1 62",
+                "move": "d5c4",
+                "category": "wrong_piece_on_square"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "piece_movement": 1,
+            "leaves_king_in_check": 5,
+            "wrong_piece_on_square": 3
+        },
+        "first_attempt_total": 95,
+        "first_attempt_illegal": 8,
+        "format_normalizations": 1,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 135836,
+                "completion_tokens": 234011,
+                "total_tokens": 369847
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.13\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\"]\n\n1. c4 e5 2. Nc3 Nf6 3. d3 Nc6 4. Bg5 h6 5. Bd2 Nd4 \n6. a3 Bc5 7. h3 O-O 8. e3 Nf5 9. g4 Nxe3 10. fxe3 d6 \n11. Qf3 e4 12. dxe4 Be6 13. O-O-O Bxc4 14. Bxc4 Qe7 15. e5 dxe5 \n16. Qf1 c6 17. a4 Bb6 18. Qe2 Qd6 19. Rf1 e4 20. Nd1 Qg3 \n21. Rf5 Qxg4 22. Qf2 Qg6 23. Qf1 Ng4 24. h4 Nf6 25. a5 Rad8 \n26. h5 Nxh5 27. Rhxh5 Qg4 28. Rxf7 Rxf7 29. Qxf7+ Kh8 30. Be2 Qxg1 \n31. Rf5 Bxe3 32. Qf8+ Rxf8 33. Rxf8+ Kh7 34. Bxe3 Qg2 35. Rf2 Qh3 \n36. a6 c5 37. axb7 Qd7 38. b8=Q Qf5 39. Qb5 Qg6 40. Qc4 Qd6 \n41. Qxe4+ Qg6 42. Qf4 Qg5 43. Qc4 Qe5 44. Bd3+ g6 45. Rf7+ Kh8 \n46. Rf4 Qd6 47. Qc3+ Kh7 48. Be4 Qd8 49. Qa3 Qd6 50. Qxa7+ Kg8 \n51. Qa2+ Kh8 52. Qa8+ Qd8 53. Rf8+ Kg7 54. Qb7+ Kxf8 55. Bxc5+ Kg8 \n56. Qb3+ Kg7 57. Qc3+ Qf6 58. Qxf6+ Kxf6 59. Nc3 h5 60. Bd4+ Ke6 \n61. b4 g5 62. Bd5+ Kd6 63. Bf3 h4 64. Nb5+ Ke6 65. Be2 h3 \n66. Bg1 Kf5 67. Bd3+ Ke5 68. Bf1 g4 69. Bh2+ Kf5 70. Kd2 Ke4 \n71. Nc3+ Kd4 72. Be2 g3 73. Nb5+ Kd5 74. Nc7+ Kc6 75. Bf3+ Kxc7 \n76. Kd3 gxh2 77. Bh1 Kd6 78. Kc4 Ke5 79. Kc3 Kf4 80. Kd2 Kg3 \n81. Ke2 Kf4 82. Kd3 Kg3 83. Kd2 Kf2 84. b5 Kg1 85. Ke3 Kxh1 \n86. Kf3 Kg1 87. Ke3 h1=Q 88. Kd2 Qd5+ 89. Kc3 h2 90. b6 h1=Q \n91. Kb4 Qd6+ 92. Kc3 Qxb6 93. Kd2 Qb2+ 94. Ke3 Qc3+ 95. Ke2 Qhf3# \n 0-1",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 518,
+        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": true,
+        "chess960_prompt_hint": true,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "CHESS_ENGINE_STOCKFISH",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 0,
+        "dragon_level": 0,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "white"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "RNBQKBNR",
+            "answer": "Rank 8, from the a-file to the h-file:\n\na8: Rook (R)\nb8: Knight (N)\nc8: Bishop (B)\nd8: Queen (Q)\ne8: King (K)\nf8: Bishop (B)\ng8: Knight (N)\nh8: Rook (R)\n\nBACK_RANK: RNBQKBNR",
+            "parsed": "RNBQKBNR",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 518,
+    "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+}

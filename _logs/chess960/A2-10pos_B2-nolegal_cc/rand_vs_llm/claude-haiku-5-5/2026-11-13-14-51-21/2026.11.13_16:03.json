@@ -1,0 +1,105 @@
+{
+    "time_started": "2026.11.13_16:03",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 100,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 50,
+        "make_move_count": 50,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 50,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 50,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 0,
+        "black": 31
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 1,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 50,
+        "get_legal_moves_count": 0,
+        "make_move_count": 51,
+        "accumulated_reply_time_seconds": 531.315,
+        "model": "claude-haiku-5-5",
+        "turns": 50,
+        "illegal_attempts": [
+            {
+                "ply": 66,
+                "side": "black",
+                "fen": "rkr3b1/5ppp/2p5/p3p3/7n/K7/2p5/n7 b kq - 1 33",
+                "move": "a1c2",
+                "category": "piece_movement"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "piece_movement": 1
+        },
+        "first_attempt_total": 50,
+        "first_attempt_illegal": 1,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 47186,
+                "completion_tokens": 97776,
+                "total_tokens": 144962
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.13\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1\"]\n\n1. b4 e5 2. c4 d5 3. Kc2 Bxb4 4. g4 dxc4 5. Bg2 Nf6 \n6. h4 Nxg4 7. Kb2 Bxd2 8. a3 Bxc1+ 9. Rxc1 Qxd1 10. a4 Qxe2+ \n11. Ka3 Qe3+ 12. fxe3 Ng6 13. Bf2 b5 14. Nd3 Nxf2 15. Kb4 Nxd3+ \n16. Ka5 Nxc1 17. Be4 c6 18. Bd5 Nb3+ 19. Kb4 Nxh4 20. Bxc4 bxc4 \n21. Ka3 Nc5 22. Kb2 Nxa4+ 23. Ka1 Nc3 24. e4 Nxe4 25. Ng3 Nxg3 \n26. Ka2 c3 27. Kb3 Ne2 28. Ka4 a5 29. Kb3 Nd4+ 30. Kc4 Nc2 \n31. Kb3 Na1+ 32. Ka4 c2 33. Ka3 c1=Q+ 34. Ka4 Qc4+ 35. Ka3 Qb4+ \n36. Ka2 Qb3+ 37. Kxa1 Qa3+ 38. Kb1 Qb3+ 39. Ka1 Qa3+ 40. Kb1 Qb3+ \n41. Ka1 Qa3+ 42. Kb1 Qb3+ 43. Kc1 Qc3+ 44. Kd1 Qe3 45. Kc2 Qe2+ \n46. Kb1 Qd2 47. Ka1 Qc1+ 48. Ka2 Qc2+ 49. Ka3 Qb1 50. Ka4 Qa2# \n 0-1",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 926,
+        "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1",
+        "legal_moves_enabled": false,
+        "comprehension_check": true,
+        "chess960_prompt_hint": true,
+        "max_failed_attempts": 5,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "RANDOM_PLAYER",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 1,
+        "dragon_level": 1,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "white"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "RKRQNBBN",
+            "answer": "Black's back rank, from the a-file to the h-file, is: rook, king, rook, queen, knight, bishop, bishop, knight.\n\nBACK_RANK: RKRQNBBN",
+            "parsed": "RKRQNBBN",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 926,
+    "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1"
+}

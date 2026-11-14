@@ -1,0 +1,112 @@
+{
+    "time_started": "2026.11.13_16:26",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 52,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 26,
+        "make_move_count": 26,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 26,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 26,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 9,
+        "black": 36
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 2,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 26,
+        "get_legal_moves_count": 12,
+        "make_move_count": 28,
+        "accumulated_reply_time_seconds": 583.467,
+        "model": "claude-haiku-5-5",
+        "turns": 26,
+        "illegal_attempts": [
+            {
+                "ply": 26,
+                "side": "black",
+                "fen": "rkrq2b1/ppp2pp1/7p/3pp3/4n1Pn/PPP4B/3P4/RKRQ2bN b kq - 1 13",
+                "move": "d8h4",
+                "category": "piece_movement"
+            },
+            {
+                "ply": 32,
+                "side": "black",
+                "fen": "rkrq2b1/ppp2p2/7p/3pp1p1/4n1Pn/PPP3NB/2KP4/R1R1b3 b kq - 1 16",
+                "move": "h4g3",
+                "category": "piece_movement"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "piece_movement": 2
+        },
+        "first_attempt_total": 26,
+        "first_attempt_illegal": 2,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 26929,
+                "completion_tokens": 57954,
+                "total_tokens": 84883
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.13\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1\"]\n\n1. b3 e5 2. h4 Ng6 3. Nd3 Nxh4 4. Ne1 d5 5. Kb2 Nf5 \n6. c3 Bc5 7. Kb1 h6 8. Nf3 Bxf2 9. g4 Bxg1 10. e4 Nf6 \n11. Nh4 Nxh4 12. a3 Nxe4 13. Bh3 g5 14. Ng3 Bf2 15. Qe1 Bxe1 \n16. Kc2 Nxg3 17. Kb2 Bxd2 18. Ka2 Bxc1 19. a4 Be3 20. Bg2 Nxg2 \n21. Kb2 Nf4 22. Ra3 Qf6 23. c4 Nd3+ 24. Kc3 Bd4+ 25. Kd2 Qf2+ \n26. Kxd3 Qe2#  0-1",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 926,
+        "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": true,
+        "chess960_prompt_hint": false,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "RANDOM_PLAYER",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 1,
+        "dragon_level": 1,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "white"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "RKRQNBBN",
+            "answer": "My back rank from a8 to h8 is: Rook, King, Rook, Queen, Knight, Bishop, Bishop, Knight.\n\nBACK_RANK: RKRQNBBN",
+            "parsed": "RKRQNBBN",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 926,
+    "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1"
+}

@@ -1,4 +1,5 @@
 import random
+import re
 import time
 import traceback
 import chess
@@ -49,6 +50,13 @@ rotate_board_for_white = False # Whether to rotate the Uicode board for the whit
 # Chess960 (Fischer Random) configuration
 chess960 = False  # If True, games start from a Chess960 position (see llm_chess960.py / `uv run llm-chess960`)
 chess960_position: int | None = None  # Scharnagl number 0-959 (518 = standard setup); None picks a random position per game
+chess960_prompt_hint = True  # False = play the Chess960 position without telling the LLM it is Chess960 (no rules/castling explanation)
+
+# Experiment switches
+enable_legal_moves = True  # False = LLM players cannot call get_legal_moves (it is not offered and counts as a wrong action)
+comprehension_check = False  # True = before move 1, ask each LLM player to state its back rank (logged, game continues either way)
+engine_depth: int | None = None  # Optional search-depth limit for Stockfish/Dragon (e.g. 1); time_per_move still caps each move
+record_experiment_stats = False  # True = add settings/outcome/illegal-attempt fields to game logs (set by the 960 runners)
 
 # Game configuration
 max_game_moves = 200  # maximum number of game moves before terminating, dafault 200
@@ -99,7 +107,7 @@ remove_text_black: str | None = None
 # Backward-compat global (applies to both sides when per-player not set)
 remove_text: str | None = None
 
-stockfish_path = "/opt/homebrew/bin/stockfish"
+stockfish_path = "/usr/local/bin/stockfish"
 reset_stockfish_history = True  # If True, Stockfish will get no history before making a move, default is True
 stockfish_level = 1  # Set to an integer (0-20) to override Stockfish skill level, or None to use default
 stockfish_time_per_move = 0.1  # Time limit (in seconds) for Stockfish to think per move, default is 0.1
@@ -154,6 +162,160 @@ def _setup_board() -> None:
     else:
         board.reset()
     starting_fen = board.fen()
+
+
+def describe_illegal_move(move: str) -> Dict[str, Any]:
+    """Classify a rejected move against the current (unchanged) board.
+
+    Categories:
+      - unparseable: not a valid UCI string
+      - wrong_piece_on_square: from-square is empty or holds an opponent piece
+      - castling: king move onto its own rook, or a two-file king move (castling attempt)
+      - missing_promotion: pawn reaches the last rank without a promotion piece (e.g. 'e7e8')
+      - leaves_king_in_check: the piece can move there, but it leaves/keeps the own king in check
+      - piece_movement: the piece cannot move like that (wrong pattern or blocked)
+    """
+    info = {
+        "ply": len(board.move_stack) + 1,
+        "side": "white" if board.turn == chess.WHITE else "black",
+        "fen": board.fen(),
+        "move": move,
+    }
+    try:
+        move_obj = chess.Move.from_uci(move)
+    except ValueError:
+        info["category"] = "unparseable"
+        return info
+
+    piece = board.piece_at(move_obj.from_square)
+    if piece is None or piece.color != board.turn:
+        info["category"] = "wrong_piece_on_square"
+        return info
+
+    if piece.piece_type == chess.KING:
+        target = board.piece_at(move_obj.to_square)
+        onto_own_rook = (
+            target is not None and target.color == board.turn and target.piece_type == chess.ROOK
+        )
+        file_jump = abs(chess.square_file(move_obj.from_square) - chess.square_file(move_obj.to_square))
+        same_rank = chess.square_rank(move_obj.from_square) == chess.square_rank(move_obj.to_square)
+        if onto_own_rook or (same_rank and file_jump >= 2):
+            info["category"] = "castling"
+            return info
+
+    if (
+        piece.piece_type == chess.PAWN
+        and move_obj.promotion is None
+        and chess.square_rank(move_obj.to_square) in (0, 7)
+        and board.is_pseudo_legal(chess.Move(move_obj.from_square, move_obj.to_square, promotion=chess.QUEEN))
+    ):
+        info["category"] = "missing_promotion"
+    elif board.is_pseudo_legal(move_obj):
+        info["category"] = "leaves_king_in_check"
+    else:
+        info["category"] = "piece_movement"
+    return info
+
+
+_BACK_RANK_RE = re.compile(r"BACK[_ ]RANK\s*:\s*((?:[KQRBNkqrbn][\s,]*){8})")
+
+
+def _expected_back_rank(color: chess.Color) -> str:
+    rank = 0 if color == chess.WHITE else 7
+    pieces = []
+    for file in range(8):
+        piece = board.piece_at(chess.square(file, rank))
+        pieces.append(piece.symbol().upper() if piece else "-")
+    return "".join(pieces)
+
+
+def run_comprehension_check(player: Any, color: chess.Color) -> Dict[str, Any]:
+    """Ask an LLM player to state its own back rank before the game (logged, not scored in-game)."""
+    side = "white" if color == chess.WHITE else "black"
+    rank_number = 1 if color == chess.WHITE else 8
+    expected = _expected_back_rank(color)
+    question = (
+        f"You are about to play a game of chess as {side}. "
+        + ("This game is Chess960 (Fischer Random Chess). " if chess960 and chess960_prompt_hint else "")
+        + "This is the starting position:\n\n"
+        + get_current_board()
+        + f"\n\nBefore the game starts, list the pieces on your own back rank (rank {rank_number}) "
+        "from the a-file to the h-file, using the letters K (king), Q (queen), R (rook), B (bishop), N (knight). "
+        "End your answer with one line in exactly this format:\nBACK_RANK: <8 letters>"
+    )
+    result: Dict[str, Any] = {"expected": expected, "answer": None, "parsed": None, "correct": False}
+
+    client = getattr(player, "client", None)
+    if client is None:
+        result["error"] = "player has no LLM client"
+        return result
+
+    for attempt in range(max_api_retries + 1):
+        try:
+            response = client.create(messages=[{"role": "user", "content": question}], cache=None)
+            text = client.extract_text_or_completion_object(response)[0]
+            text = text if isinstance(text, str) else str(text)
+            result["answer"] = text[-2000:]
+            matches = _BACK_RANK_RE.findall(text)
+            if matches:
+                parsed = re.sub(r"[\s,]", "", matches[-1]).upper()
+                result["parsed"] = parsed
+                result["correct"] = parsed == expected
+            return result
+        except Exception as e:  # keep the game running even if the check fails
+            if attempt < max_api_retries:
+                time.sleep(api_retry_delay * (2**attempt))
+                continue
+            result["error"] = str(e)
+            return result
+    return result
+
+
+def _is_llm_player(player: Any) -> bool:
+    return type(player) is GameAgent or isinstance(player, NonGameAgent)
+
+
+def _player_instrumentation(player: Any) -> Dict[str, Any]:
+    attempts = list(getattr(player, "illegal_attempts", []) or [])
+    by_type: Dict[str, int] = {}
+    for a in attempts:
+        by_type[a.get("category", "unknown")] = by_type.get(a.get("category", "unknown"), 0) + 1
+    return {
+        "turns": getattr(player, "turns", 0),
+        "illegal_attempts": attempts,
+        "illegal_attempts_by_type": by_type,
+        "first_attempt_total": getattr(player, "first_attempt_total", 0),
+        "first_attempt_illegal": getattr(player, "first_attempt_illegal", 0),
+        "format_normalizations": getattr(player, "format_normalizations", 0),
+        "disallowed_action_requests": getattr(player, "disallowed_action_requests", 0),
+    }
+
+
+def _loss_cause(reason: str, losing_player: Any) -> str:
+    if reason == TerminationReason.CHECKMATE.value:
+        return "checkmate"
+    if reason == TerminationReason.TOO_MANY_WRONG_ACTIONS.value:
+        wrong_moves = getattr(losing_player, "turn_wrong_moves", 0)
+        wrong_actions = getattr(losing_player, "turn_wrong_actions", 0)
+        if wrong_actions == 0:
+            return "illegal_move_forfeit"
+        if wrong_moves == 0:
+            return "format_forfeit"
+        return "mixed_forfeit"
+    if reason == TerminationReason.MAX_TURNS.value:
+        return "max_turns_forfeit"
+    if reason == TerminationReason.MAX_MOVES.value:
+        return "max_moves_draw"
+    if reason in (
+        TerminationReason.STALEMATE.value,
+        TerminationReason.INSUFFICIENT_MATERIAL.value,
+        TerminationReason.SEVENTYFIVE_MOVES.value,
+        TerminationReason.FIVEFOLD_REPETITION.value,
+    ):
+        return "draw"
+    if reason == TerminationReason.ERROR.value:
+        return "error"
+    return "unknown"
 
 def get_current_board() -> str:
     """
@@ -296,7 +458,11 @@ def run(
     common_prompt = (
         "Now is your turn to make a move. Before making a move you can pick one of the following actions:\n"
         f"- '{get_current_board_action}' to get the schema and current status of the board\n"
-        f"- '{get_legal_moves_action}' to get a UCI formatted list of available moves\n"
+        + (
+            f"- '{get_legal_moves_action}' to get a UCI formatted list of available moves\n"
+            if enable_legal_moves
+            else ""
+        )
         + (
             f"- '{reflect_action}' to take a moment to think about your strategy\n"
             if enable_reflection
@@ -306,13 +472,13 @@ def run(
         + f"Reply with plain text containing only the action, e.g. '{make_move_action} e2e4'. "
         "Do not use XML, tags or tool-call syntax."
     )
-    if chess960:
+    if chess960 and chess960_prompt_hint:
         common_prompt = (
             "This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, "
             "all other rules are the same as standard chess. After castling, the king and rook end up on the same squares "
             "as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). "
-            "Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1'), "
-            f"exactly as it appears in '{get_legal_moves_action}'.\n"
+            "Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1')"
+            + (f", exactly as it appears in '{get_legal_moves_action}'.\n" if enable_legal_moves else ".\n")
             + common_prompt
         )
 
@@ -328,13 +494,16 @@ def run(
 
     reflection_followup_prompt = (
         "Now that you reflected please choose any of the valid actions: "
-        f"{get_current_board_action}, {get_legal_moves_action}, {reflect_action}, "
+        f"{get_current_board_action}, "
+        + (f"{get_legal_moves_action}, " if enable_legal_moves else "")
+        + f"{reflect_action}, "
         f"{make_move_action} <UCI formatted move>"
     )
 
     invalid_action_message = (
         f"Invalid action. Pick one, reply exactly with the name and space delimitted argument: "
-        f"{get_current_board_action}, {get_legal_moves_action}"
+        f"{get_current_board_action}"
+        f"{', ' + get_legal_moves_action if enable_legal_moves else ''}"
         f"{', ' + reflect_action if enable_reflection else ''}"
         f", {make_move_action} <UCI formatted move>"
     )
@@ -401,6 +570,7 @@ def run(
         reflection_followup_prompt=reflection_followup_prompt,
         make_move_action=make_move_action,
         remove_text=remove_text,
+        describe_illegal_move=describe_illegal_move,
     )
 
     player_white = {
@@ -416,6 +586,7 @@ def run(
             is_termination_msg=is_termination_message,
             level=stockfish_level,
             time_limit=stockfish_time_per_move,
+            depth=engine_depth,
         ),
         PlayerType.CHESS_ENGINE_DRAGON: ChessEngineDragonAgent(
             name="Chess_Engine_Dragon_White",
@@ -426,6 +597,7 @@ def run(
             is_termination_msg=is_termination_message,
             level=dragon_level,
             time_limit=dragon_time_per_move,
+            depth=engine_depth,
         ),
         PlayerType.LLM_NON: NonGameAgent(
             name="Player_Non_White",
@@ -454,6 +626,7 @@ def run(
             is_termination_msg=is_termination_message,
             level=stockfish_level,
             time_limit=stockfish_time_per_move,
+            depth=engine_depth,
         ),
         PlayerType.CHESS_ENGINE_DRAGON: ChessEngineDragonAgent(
             name="Chess_Engine_Dragon_Black",
@@ -464,6 +637,7 @@ def run(
             is_termination_msg=is_termination_message,
             level=dragon_level,
             time_limit=dragon_time_per_move,
+            depth=engine_depth,
         ),
         PlayerType.LLM_NON: NonGameAgent(
             name="Player_Non_Black",
@@ -516,12 +690,27 @@ def run(
         
         return pgn_header + pgn_moves
     
+    comprehension_results: Dict[str, Any] = {}
+    last_player = None
+
     try:
         current_move = 0
         reason = None
 
+        if comprehension_check:
+            for side_name, side_player, side_color in (
+                ("white", player_white, chess.WHITE),
+                ("black", player_black, chess.BLACK),
+            ):
+                if type(side_player) is GameAgent:
+                    comprehension_results[side_name] = run_comprehension_check(side_player, side_color)
+                    print(f"\033[94mComprehension check ({side_name}): {comprehension_results[side_name]}\033[0m")
+
         while current_move < max_game_moves and not reason:
             for player in [player_white, player_black]:
+                last_player = player
+                # Legal-move list is only withheld from LLM players (random player needs it)
+                proxy_agent.allow_legal_moves = enable_legal_moves or not _is_llm_player(player)
                 # Set per-player remove_text dynamically
                 if player is player_white and remove_text_white is not None:
                     proxy_agent.remove_text = remove_text_white
@@ -647,6 +836,9 @@ def run(
         pgn_string,
     )
 
+    if record_experiment_stats or comprehension_check or not enable_legal_moves:
+        _add_experiment_stats(game_stats, player_white, player_black, reason, last_player, comprehension_results)
+
     if chess960:
         game_stats["variant"] = "chess960"
         game_stats["chess960_position"] = current_chess960_position
@@ -654,6 +846,41 @@ def run(
 
     display_store_game_video_and_stats(game_stats, log_dir)
     return game_stats, player_white, player_black
+
+
+def _add_experiment_stats(game_stats, player_white, player_black, reason, last_player, comprehension_results):
+    game_stats["settings"] = {
+        "chess960": chess960,
+        "chess960_position": current_chess960_position,
+        "starting_fen": starting_fen,
+        "legal_moves_enabled": enable_legal_moves,
+        "comprehension_check": comprehension_check,
+        "chess960_prompt_hint": chess960_prompt_hint,
+        "max_failed_attempts": max_failed_attempts,
+        "max_llm_turns": max_llm_turns,
+        "max_game_moves": max_game_moves,
+        "white_player_type": white_player_type.name,
+        "black_player_type": black_player_type.name,
+        "stockfish_level": stockfish_level,
+        "dragon_level": dragon_level,
+        "engine_depth": engine_depth,
+        "engine_time_per_move": stockfish_time_per_move,
+    }
+    losing_side = None
+    if reason == TerminationReason.CHECKMATE.value:
+        losing_side = "white" if board.turn == chess.WHITE else "black"  # side to move is mated
+    elif reason in (TerminationReason.TOO_MANY_WRONG_ACTIONS.value, TerminationReason.MAX_TURNS.value):
+        if last_player is not None:  # the side whose dialog failed forfeits
+            losing_side = "white" if last_player is player_white else "black"
+    losing_player = {"white": player_white, "black": player_black}.get(losing_side)
+    game_stats["outcome"] = {
+        "loss_cause": _loss_cause(reason, losing_player),
+        "losing_side": losing_side,
+    }
+    game_stats["player_white"].update(_player_instrumentation(player_white))
+    game_stats["player_black"].update(_player_instrumentation(player_black))
+    if comprehension_results:
+        game_stats["comprehension"] = comprehension_results
 
 
 if __name__ == "__main__":

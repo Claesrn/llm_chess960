@@ -32,14 +32,15 @@ def run(
     if position is not None and not 0 <= position <= 959:
         raise ValueError(f"position must be in 0..959, got {position}")
 
-    previous = (llm_chess.chess960, llm_chess.chess960_position)
+    previous = (llm_chess.chess960, llm_chess.chess960_position, llm_chess.record_experiment_stats)
     llm_chess.chess960 = True
+    llm_chess.record_experiment_stats = True
     if position is not None:
         llm_chess.chess960_position = position
     try:
         return llm_chess.run(log_dir=log_dir, **kwargs)
     finally:
-        llm_chess.chess960, llm_chess.chess960_position = previous
+        llm_chess.chess960, llm_chess.chess960_position, llm_chess.record_experiment_stats = previous
 
 
 def main(argv: Optional[list] = None) -> None:

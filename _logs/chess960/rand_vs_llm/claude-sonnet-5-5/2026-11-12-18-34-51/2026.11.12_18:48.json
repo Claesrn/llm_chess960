@@ -1,0 +1,52 @@
+{
+    "time_started": "2026.11.12_18:48",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 36,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 18,
+        "make_move_count": 18,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A"
+    },
+    "material_count": {
+        "white": 11,
+        "black": 46
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 18,
+        "get_legal_moves_count": 2,
+        "make_move_count": 18,
+        "accumulated_reply_time_seconds": 275.262,
+        "model": "claude-sonnet-5-5"
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-sonnet-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 19703,
+                "completion_tokens": 26480,
+                "total_tokens": 46183
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.12\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"bnrbnkrq/pppppppp/8/8/8/8/PPPPPPPP/BNRBNKRQ w KQkq - 0 1\"]\n\n1. Na3 e5 2. f4 exf4 3. c3 Nf6 4. Nd3 g5 5. e4 Nxe4 \n6. Nb1 Nc6 7. Bg4 Ke8 8. Ke2 f3+ 9. Ke3 fxg2 10. Be2 gxh1=Q \n11. Bh5 Qxh2 12. Rcf1 Qxh5 13. Rf4 gxf4+ 14. Nxf4 Q5e5 15. Rd1 Nxc3+ \n16. Kf3 Nxd1 17. d4 Qxd4 18. Nd5 Qg4#  0-1",
+    "variant": "chess960",
+    "chess960_position": 177,
+    "starting_fen": "bnrbnkrq/pppppppp/8/8/8/8/PPPPPPPP/BNRBNKRQ w KQkq - 0 1"
+}

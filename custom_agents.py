@@ -30,7 +30,12 @@ def is_retryable_error(exception) -> bool:
         "service is not available",
         "rate limit",
         "timeout",
+        "timed out",  # e.g. "The read operation timed out" (httpx read timeout while streaming)
         "connection error",
+        "peer closed connection",  # stream dropped mid-response
+        "incomplete chunked read",
+        "overloaded",  # Anthropic overloaded_error
+        "error code: 529",
         "temporarily unavailable",
         "try again later",
         # "internal server error",
@@ -81,6 +86,16 @@ class GameAgent(ConversableAgent):
         self.max_retries = max_retries
         self.retry_delay = retry_delay
         self.empty_response_retry_delay = empty_response_retry_delay
+        # Experiment instrumentation (see AutoReplyAgent.generate_reply)
+        self.turns = 0  # number of times the agent was asked to move
+        self.illegal_attempts = []  # one dict per rejected make_move (ply, fen, move, category)
+        self.first_attempt_total = 0  # turns where the agent tried at least one make_move
+        self.first_attempt_illegal = 0  # ...and the first try was illegal
+        self.format_normalizations = 0  # replies rewritten from <invoke> tool-call syntax
+        self.disallowed_action_requests = 0  # e.g. get_legal_moves when it is switched off
+        self.turn_wrong_moves = 0
+        self.turn_wrong_actions = 0
+        self.turn_make_move_attempts = 0
 
     def prep_to_move(self):
         """
@@ -88,6 +103,10 @@ class GameAgent(ConversableAgent):
         """
         self.has_requested_board = False
         self.failed_action_attempts = 0
+        self.turns += 1
+        self.turn_wrong_moves = 0
+        self.turn_wrong_actions = 0
+        self.turn_make_move_attempts = 0
 
     def generate_reply(
         self,
@@ -373,9 +392,15 @@ class AutoReplyAgent(GameAgent):
         reflection_followup_prompt,
         remove_text,
         *args,
+        describe_illegal_move=None,
+        allow_legal_moves=True,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
+        # Optional callback (move_str -> dict) used to log/classify rejected moves
+        self.describe_illegal_move = describe_illegal_move
+        # When False, 'get_legal_moves' is rejected as an invalid action (set per turn)
+        self.allow_legal_moves = allow_legal_moves
         self.get_current_board = get_current_board
         self.get_legal_moves = get_legal_moves
         self.make_move = make_move
@@ -424,6 +449,8 @@ class AutoReplyAgent(GameAgent):
         normalized_choice = normalize_tool_call_syntax(raw_choice)
         if normalized_choice != raw_choice:
             print(f"\033[93mNormalized tool-call syntax to: {normalized_choice}\033[0m")
+            if sender is not None:
+                sender.format_normalizations = getattr(sender, "format_normalizations", 0) + 1
         action_choice = normalized_choice.lower().strip()
         reply = ""
 
@@ -431,6 +458,13 @@ class AutoReplyAgent(GameAgent):
             sender.get_board_count += 1
             reply = self.get_current_board()
             sender.has_requested_board = True
+        elif self.get_legal_moves_action in action_choice and not self.allow_legal_moves:
+            # Legal-move list is switched off for this player (experiment condition B2)
+            reply = self.invalid_action_message
+            sender.failed_action_attempts += 1
+            sender.wrong_actions += 1
+            sender.turn_wrong_actions = getattr(sender, "turn_wrong_actions", 0) + 1
+            sender.disallowed_action_requests = getattr(sender, "disallowed_action_requests", 0) + 1
         elif self.get_legal_moves_action in action_choice:
             sender.get_legal_moves_count += 1
             reply = self.get_legal_moves()
@@ -448,18 +482,31 @@ class AutoReplyAgent(GameAgent):
             match = re.search(rf"{self.make_move_action} ([a-zA-Z0-9]{{4,5}})", action_choice)
             if match:
                 sender.make_move_count += 1
+                first_try = getattr(sender, "turn_make_move_attempts", 0) == 0
+                sender.turn_make_move_attempts = getattr(sender, "turn_make_move_attempts", 0) + 1
+                if first_try:
+                    sender.first_attempt_total = getattr(sender, "first_attempt_total", 0) + 1
+                move = match.group(1)
                 try:
-                    move = match.group(1)
                     self.make_move(move)
                     reply = self.move_was_made
                 except Exception as e:
                     reply = f"Failed to make move: {e}"
                     sender.failed_action_attempts += 1
                     sender.wrong_moves += 1
+                    sender.turn_wrong_moves = getattr(sender, "turn_wrong_moves", 0) + 1
+                    if first_try:
+                        sender.first_attempt_illegal = getattr(sender, "first_attempt_illegal", 0) + 1
+                    if self.describe_illegal_move is not None and hasattr(sender, "illegal_attempts"):
+                        try:
+                            sender.illegal_attempts.append(self.describe_illegal_move(move))
+                        except Exception as describe_error:  # never let logging break a game
+                            sender.illegal_attempts.append({"move": move, "category": "unknown", "error": str(describe_error)})
             else:
                 reply = self.invalid_action_message
                 sender.failed_action_attempts += 1
                 sender.wrong_actions += 1
+                sender.turn_wrong_actions = getattr(sender, "turn_wrong_actions", 0) + 1
 
         if sender.failed_action_attempts >= self.max_failed_attempts:
             print("BREAKING >>> " + reply)
@@ -486,9 +533,10 @@ class ChessEngineStockfishAgent(GameAgent):
         make_move_action: str,
         time_limit=0.01,
         level: Optional[int] = None,
-        stockfish_path="/opt/homebrew/bin/stockfish",
+        stockfish_path="/usr/local/bin/stockfish",
         remove_history: bool = False,
         *args,
+        depth: Optional[int] = None,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
@@ -496,6 +544,7 @@ class ChessEngineStockfishAgent(GameAgent):
         self.make_move_action = make_move_action
         self.stockfish_path = stockfish_path
         self.time_limit = time_limit
+        self.depth = depth  # optional search-depth limit (plies); the time limit still applies as a cap
         self.remove_history = remove_history
         self.level = level  # Store stockfish_level
 
@@ -517,7 +566,7 @@ class ChessEngineStockfishAgent(GameAgent):
                 b = self.board
                 if self.remove_history:
                     b = chess.Board(b.fen(), chess960=b.chess960)
-                result = engine.play(b, chess.engine.Limit(time=self.time_limit))
+                result = engine.play(b, chess.engine.Limit(time=self.time_limit, depth=self.depth))
                 move = result.move
                 return f"{self.make_move_action} {move.uci()}"
         except Exception as e:
@@ -547,6 +596,7 @@ class ChessEngineDragonAgent(GameAgent):
         dragon_path="./dragon/dragon-osx",
         remove_history: bool = False,
         *args,
+        depth: Optional[int] = None,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
@@ -554,6 +604,7 @@ class ChessEngineDragonAgent(GameAgent):
         self.make_move_action = make_move_action
         self.dragon_path = dragon_path
         self.time_limit = time_limit
+        self.depth = depth  # optional search-depth limit (plies); the time limit still applies as a cap
         self.remove_history = remove_history
         self.level = level  # Store skill level
 
@@ -575,7 +626,7 @@ class ChessEngineDragonAgent(GameAgent):
                 b = self.board
                 if self.remove_history:
                     b = chess.Board(b.fen(), chess960=b.chess960)
-                result = engine.play(b, chess.engine.Limit(time=self.time_limit))
+                result = engine.play(b, chess.engine.Limit(time=self.time_limit, depth=self.depth))
                 move = result.move
                 return f"{self.make_move_action} {move.uci()}"
         except Exception as e:

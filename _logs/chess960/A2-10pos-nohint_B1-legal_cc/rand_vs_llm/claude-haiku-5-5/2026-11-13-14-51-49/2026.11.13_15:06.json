@@ -1,0 +1,95 @@
+{
+    "time_started": "2026.11.13_15:06",
+    "winner": "NONE",
+    "reason": "ERROR OCCURED",
+    "number_of_moves": 19,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 10,
+        "make_move_count": 10,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 10,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 10,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 21,
+        "black": 47
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 10,
+        "get_legal_moves_count": 2,
+        "make_move_count": 9,
+        "accumulated_reply_time_seconds": 1241.98,
+        "model": "claude-haiku-5-5",
+        "turns": 10,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 9,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 7748,
+                "completion_tokens": 12462,
+                "total_tokens": 20210
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.13\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"1/2-1/2\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1\"]\n\n1. Nc3 e5 2. d4 exd4 3. g4 Nc6 4. f4 dxc3 5. Bh3 cxb2 \n6. Bc3 bxa1=Q 7. O-O Qxc3 8. Kg2 Qd2 9. Nf2 Qxe2 10. c4  1/2-1/2",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 298,
+        "starting_fen": "qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": true,
+        "chess960_prompt_hint": false,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "RANDOM_PLAYER",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 1,
+        "dragon_level": 1,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "error",
+        "losing_side": null
+    },
+    "comprehension": {
+        "black": {
+            "expected": "QNRKBBRN",
+            "answer": "The back rank as shown in the diagram, from a-file to h-file, is Q, N, R, K, B, B, R, N. Note that this is not the standard setup: the queen sits on a8 and the king on d8.\n\nBACK_RANK: QNRKBBRN",
+            "parsed": "QNRKBBRN",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 298,
+    "starting_fen": "qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1"
+}

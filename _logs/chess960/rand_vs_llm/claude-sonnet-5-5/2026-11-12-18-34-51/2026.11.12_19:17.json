@@ -1,0 +1,52 @@
+{
+    "time_started": "2026.11.12_19:17",
+    "winner": "Player_Black",
+    "reason": "Checkmate",
+    "number_of_moves": 56,
+    "player_white": {
+        "name": "Random_Player",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 28,
+        "make_move_count": 28,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A"
+    },
+    "material_count": {
+        "white": 3,
+        "black": 36
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 1,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 28,
+        "get_legal_moves_count": 9,
+        "make_move_count": 29,
+        "accumulated_reply_time_seconds": 560.397,
+        "model": "claude-sonnet-5-5"
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-sonnet-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 59920,
+                "completion_tokens": 72959,
+                "total_tokens": 132879
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.12\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"0-1\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rkrnbqnb/pppppppp/8/8/8/8/PPPPPPPP/RKRNBQNB w KQkq - 0 1\"]\n\n1. g4 g6 2. Qg2 Nc6 3. h4 Nf6 4. d4 Nxd4 5. f4 Nc6 \n6. e4 d5 7. Ba5 Nxa5 8. a3 dxe4 9. Qh2 Nxg4 10. Qd2 Nc4 \n11. Qh2 Nxh2 12. Ne2 Nf3 13. Ndc3 Nxh4 14. b3 Bxc3 15. Nxc3 Nd2+ \n16. Ka2 Bc6 17. Nd5 Bxd5 18. Rf1 Nxf1 19. Rc1 Ng3 20. Kb2 Ne2 \n21. Ka2 Nxc1+ 22. Kb2 Ne2 23. Bg2 Nxg2 24. Kb1 Nc3+ 25. Kc1 Bxb3 \n26. f5 Qh6+ 27. Kb2 Qd2 28. Ka1 Qc1#  0-1",
+    "variant": "chess960",
+    "chess960_position": 939,
+    "starting_fen": "rkrnbqnb/pppppppp/8/8/8/8/PPPPPPPP/RKRNBQNB w KQkq - 0 1"
+}
