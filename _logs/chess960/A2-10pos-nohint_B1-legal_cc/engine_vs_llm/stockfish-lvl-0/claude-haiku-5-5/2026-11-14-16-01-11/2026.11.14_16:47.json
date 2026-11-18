@@ -1,0 +1,105 @@
+{
+    "time_started": "2026.11.14_16:47",
+    "winner": "Chess_Engine_Stockfish_White",
+    "reason": "Checkmate",
+    "number_of_moves": 71,
+    "player_white": {
+        "name": "Chess_Engine_Stockfish_White",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 0,
+        "make_move_count": 36,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 36,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 36,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 14,
+        "black": 10
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 1,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 35,
+        "get_legal_moves_count": 15,
+        "make_move_count": 36,
+        "accumulated_reply_time_seconds": 475.045,
+        "model": "claude-haiku-5-5",
+        "turns": 35,
+        "illegal_attempts": [
+            {
+                "ply": 10,
+                "side": "black",
+                "fen": "qrnbnkbQ/pp3p1p/2p3p1/3pN3/1P5P/8/P1PPPPP1/1RNB1KBR b KQq - 0 5",
+                "move": "d3c2",
+                "category": "wrong_piece_on_square"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "wrong_piece_on_square": 1
+        },
+        "first_attempt_total": 35,
+        "first_attempt_illegal": 1,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 33285,
+                "completion_tokens": 89432,
+                "total_tokens": 122717
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.14\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"1-0\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"qrnbnkbr/pppppppp/8/8/8/8/PPPPPPPP/QRNBNKBR w KQkq - 0 1\"]\n\n1. b4 d5 2. Ned3 g6 3. Qxh8 e5 4. Nxe5 c6 5. h4 f5 \n6. Nb3 Bf6 7. Qxf6+ Nxf6 8. c3 Ne4 9. Bh2 Ned6 10. Bf4 Ne4 \n11. h5 a6 12. Nd7+ Ke7 13. Ne5 Nxc3 14. dxc3 h6 15. Nd2 Bh7 \n16. Bb3 Nd6 17. Re1 gxh5 18. g3 Ne4 19. Rg1 Nxd2+ 20. Bxd2 Kd6 \n21. Nf3 Re8 22. Bf4+ Kd7 23. Ne5+ Ke7 24. a4 d4 25. cxd4 Qd8 \n26. Rd1 Qd6 27. Bd2 Qxd4 28. Bg5+ hxg5 29. Rxd4 c5 30. Rd7+ Kf6 \n31. Ng4+ hxg4 32. Rf7+ Kg6 33. Rxb7 Re4 34. Rh1 Rxb4 35. Rbxh7 Rxb3 \n36. R1h6#  1-0",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 397,
+        "starting_fen": "qrnbnkbr/pppppppp/8/8/8/8/PPPPPPPP/QRNBNKBR w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": true,
+        "chess960_prompt_hint": false,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "CHESS_ENGINE_STOCKFISH",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 0,
+        "dragon_level": 0,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "black"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "QRNBNKBR",
+            "answer": "The diagram shows the following pieces on rank 8, from the a-file to the h-file: queen, rook, knight, bishop, knight, king, bishop, rook. This is not the standard chess setup, which would be R N B Q K B N R, so I am going by the diagram as given.\n\nBACK_RANK: QRNBNKBR",
+            "parsed": "QRNBNKBR",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 397,
+    "starting_fen": "qrnbnkbr/pppppppp/8/8/8/8/PPPPPPPP/QRNBNKBR w KQkq - 0 1"
+}

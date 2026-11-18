@@ -1,0 +1,669 @@
+
+=== Game 1/10 (position #518) ===
+Chess960 start position #518: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+My
+
+ back rank,
+
+ from the
+
+ a-file to the h-file
+
+,
+
+ is:
+
+- a
+
+8: Rook (
+
+R)
+- b8:
+
+ Knight (N)
+- c
+
+8: Bishop (B
+
+)
+- d8: Que
+
+en (Q)
+- e
+
+8: King (K)
+-
+
+ f8: Bishop (
+
+B)
+- g8:
+
+ Knight (N)
+- h
+
+8: Rook (R)
+
+
+
+BACK_RANK
+
+: RNBQKBN
+
+R
+
+/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/oai/anthropic.py:1607: UserWarning: Cost calculation not available for model claude-haiku-5-5
+  warnings.warn(f"Cost calculation not available for model {model}", UserWarning)
+Comprehension check (black): {'expected': 'RNBQKBNR', 'answer': 'My back rank, from the a-file to the h-file, is:\n\n- a8: Rook (R)\n- b8: Knight (N)\n- c8: Bishop (B)\n- d8: Queen (Q)\n- e8: King (K)\n- f8: Bishop (B)\n- g8: Knight (N)\n- h8: Rook (R)\n\nBACK_RANK: RNBQKBNR', 'parsed': 'RNBQKBNR', 'correct': True}
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move e2e4
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 1
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
+♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟
+⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♙ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘
+♙ ♙ ♙ ♙ ⭘ ♙ ♙ ♙
+♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖
+
+--------------------------------------------------------------------------------
+make
+
+_move e7e5
+
+Player_Black (to Proxy):
+
+make_move e7e5
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (4caf31a5-0cc8-4dfd-98aa-8bb69b60507d): Termination message condition on agent 'Player_Black' met
+MADE MOVE 2
+Material Count - White: 39, Black: 39
+Prompt Tokens: 1330
+Completion Tokens: 593
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move c2c3
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 3
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
+♟ ♟ ♟ ♟ ⭘ ♟ ♟ ♟
+⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♟ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♙ ⭘ ⭘ ⭘
+⭘ ⭘ ♙ ⭘ ⭘ ⭘ ⭘ ⭘
+♙ ♙ ⭘ ♙ ⭘ ♙ ♙ ♙
+♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖
+
+--------------------------------------------------------------------------------
+make_move g8f6
+
+Player_Black (to Proxy):
+
+make_move g8f6
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (c3abdc50-8f21-4b85-a502-9bbe24a80419): Termination message condition on agent 'Player_Black' met
+MADE MOVE 4
+Material Count - White: 39, Black: 39
+Prompt Tokens: 2238
+Completion Tokens: 1263
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move d2d3
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 5
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ♞ ♝ ♛ ♚ ♝ ⭘ ♜
+♟ ♟ ♟ ♟ ⭘ ♟ ♟ ♟
+⭘ ⭘ ⭘ ⭘ ⭘ ♞ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♟ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♙ ⭘ ⭘ ⭘
+⭘ ⭘ ♙ ♙ ⭘ ⭘ ⭘ ⭘
+♙ ♙ ⭘ ⭘ ⭘ ♙ ♙ ♙
+♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖
+
+--------------------------------------------------------------------------------
+make
+
+_move f8c5
+
+Player_Black (to Proxy):
+
+make_move f8c5
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (2061b3fe-dea3-4d4f-85a0-c7762ed89bfc): Termination message condition on agent 'Player_Black' met
+MADE MOVE 6
+Material Count - White: 39, Black: 39
+Prompt Tokens: 3146
+Completion Tokens: 2628
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move f1e2
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 7
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ♞ ♝ ♛ ♚ ⭘ ⭘ ♜
+♟ ♟ ♟ ♟ ⭘ ♟ ♟ ♟
+⭘ ⭘ ⭘ ⭘ ⭘ ♞ ⭘ ⭘
+⭘ ⭘ ♝ ⭘ ♟ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♙ ⭘ ⭘ ⭘
+⭘ ⭘ ♙ ♙ ⭘ ⭘ ⭘ ⭘
+♙ ♙ ⭘ ⭘ ♗ ♙ ♙ ♙
+♖ ♘ ♗ ♕ ♔ ⭘ ♘ ♖
+
+--------------------------------------------------------------------------------
+make
+
+_move b8c6
+
+Player_Black (to Proxy):
+
+make_move b8c6
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (242fe7f4-bb1d-4435-a08a-cf892a12945f): Termination message condition on agent 'Player_Black' met
+MADE MOVE 8
+Material Count - White: 39, Black: 39
+Prompt Tokens: 4054
+Completion Tokens: 3889
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move b2b4
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 9
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ⭘ ♝ ♛ ♚ ⭘ ⭘ ♜
+♟ ♟ ♟ ♟ ⭘ ♟ ♟ ♟
+⭘ ⭘ ♞ ⭘ ⭘ ♞ ⭘ ⭘
+⭘ ⭘ ♝ ⭘ ♟ ⭘ ⭘ ⭘
+⭘ ♙ ⭘ ⭘ ♙ ⭘ ⭘ ⭘
+⭘ ⭘ ♙ ♙ ⭘ ⭘ ⭘ ⭘
+♙ ⭘ ⭘ ⭘ ♗ ♙ ♙ ♙
+♖ ♘ ♗ ♕ ♔ ⭘ ♘ ♖
+
+--------------------------------------------------------------------------------
+make_move e8h8
+
+Player_Black (to Proxy):
+
+make_move e8h8
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (afdeca54-b886-4f6d-a68c-04817502c562): Termination message condition on agent 'Player_Black' met
+MADE MOVE 10
+Material Count - White: 39, Black: 39
+Prompt Tokens: 4962
+Completion Tokens: 5546
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move a2a4
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 11
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ⭘ ♝ ♛ ⭘ ♜ ♚ ⭘
+♟ ♟ ♟ ♟ ⭘ ♟ ♟ ♟
+⭘ ⭘ ♞ ⭘ ⭘ ♞ ⭘ ⭘
+⭘ ⭘ ♝ ⭘ ♟ ⭘ ⭘ ⭘
+♙ ♙ ⭘ ⭘ ♙ ⭘ ⭘ ⭘
+⭘ ⭘ ♙ ♙ ⭘ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♗ ♙ ♙ ♙
+♖ ♘ ♗ ♕ ♔ ⭘ ♘ ♖
+
+--------------------------------------------------------------------------------
+make_move d7
+
+d6
+
+Player_Black (to Proxy):
+
+make_move d7d6
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (8d3624cd-b376-4c60-a639-c30d1601134e): Termination message condition on agent 'Player_Black' met
+MADE MOVE 12
+Material Count - White: 39, Black: 39
+Prompt Tokens: 5870
+Completion Tokens: 7240
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move h2h4
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 13
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ⭘ ♝ ♛ ⭘ ♜ ♚ ⭘
+♟ ♟ ♟ ⭘ ⭘ ♟ ♟ ♟
+⭘ ⭘ ♞ ♟ ⭘ ♞ ⭘ ⭘
+⭘ ⭘ ♝ ⭘ ♟ ⭘ ⭘ ⭘
+♙ ♙ ⭘ ⭘ ♙ ⭘ ⭘ ♙
+⭘ ⭘ ♙ ♙ ⭘ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♗ ♙ ♙ ⭘
+♖ ♘ ♗ ♕ ♔ ⭘ ♘ ♖
+
+--------------------------------------------------------------------------------
+make
+
+_move d6
+
+d5
+
+Player_Black (to Proxy):
+
+make_move d6d5
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> TERMINATING RUN (eebcce00-2774-428f-8a4e-a93b03550896): Termination message condition on agent 'Player_Black' met
+MADE MOVE 14
+Material Count - White: 39, Black: 39
+Prompt Tokens: 6778
+Completion Tokens: 8774
+Proxy (to Chess_Engine_Stockfish_White):
+
+You are a helpful AI Assistant.
+
+--------------------------------------------------------------------------------
+Chess_Engine_Stockfish_White (to Proxy):
+
+make_move c1g5
+
+--------------------------------------------------------------------------------
+Proxy (to Chess_Engine_Stockfish_White):
+
+Move made, switching player
+
+--------------------------------------------------------------------------------
+MADE MOVE 15
+Material Count - White: 39, Black: 39
+Prompt Tokens: 0
+Completion Tokens: 0
+Proxy (to Player_Black):
+
+You are a professional chess player and you play as black. This game is Chess960 (Fischer Random Chess): the pieces on the back rank start in a shuffled position, all other rules are the same as standard chess. After castling, the king and rook end up on the same squares as in standard chess (king on g-file and rook on f-file for kingside, king on c-file and rook on d-file for queenside). Castling is written in UCI as the king moving onto its own rook's square (e.g., 'e1h1' or 'b1a1').
+Now is your turn to make a move. Before making a move you can pick one of the following actions:
+- 'get_current_board' to get the schema and current status of the board
+- 'make_move <UCI formatted move>' when you are ready to complete your turn (e.g., 'make_move e2e4')
+Reply with plain text containing only the action, e.g. 'make_move e2e4'. Do not use XML, tags or tool-call syntax.
+
+--------------------------------------------------------------------------------
+get
+
+_current_board
+
+Player_Black (to Proxy):
+
+get_current_board
+
+--------------------------------------------------------------------------------
+Proxy (to Player_Black):
+
+♜ ⭘ ♝ ♛ ⭘ ♜ ♚ ⭘
+♟ ♟ ♟ ⭘ ⭘ ♟ ♟ ♟
+⭘ ⭘ ♞ ⭘ ⭘ ♞ ⭘ ⭘
+⭘ ⭘ ♝ ♟ ♟ ⭘ ♗ ⭘
+♙ ♙ ⭘ ⭘ ♙ ⭘ ⭘ ♙
+⭘ ⭘ ♙ ♙ ⭘ ⭘ ⭘ ⭘
+⭘ ⭘ ⭘ ⭘ ♗ ♙ ♙ ⭘
+♖ ♘ ⭘ ♕ ♔ ⭘ ♘ ♖
+
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/run_multiple_games_960.py", line 513, in <module>
+    main()
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/run_multiple_games_960.py", line 509, in main
+    return run_games()
+           ^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/run_multiple_games_960.py", line 310, in run_games
+    game_stats, player_white, player_black = llm_chess.run(
+                                             ^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/llm_chess.py", line 723, in run
+    chat_result = proxy_agent.initiate_chat(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/agentchat/conversable_agent.py", line 1490, in initiate_chat
+    self.send(msg2send, recipient, request_reply=True, silent=silent)
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/agentchat/conversable_agent.py", line 1156, in send
+    recipient.receive(message, self, request_reply, silent)
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/agentchat/conversable_agent.py", line 1264, in receive
+    reply = self.generate_reply(messages=self.chat_messages[sender], sender=sender)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/custom_agents.py", line 128, in generate_reply
+    reply = super().generate_reply(messages, sender, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/agentchat/conversable_agent.py", line 3228, in generate_reply
+    final, reply = reply_func(self, messages=messages, sender=sender, config=reply_func_tuple["config"])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/agentchat/conversable_agent.py", line 2509, in generate_oai_reply
+    extracted_response = self._generate_oai_reply_from_client(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/agentchat/conversable_agent.py", line 2544, in _generate_oai_reply_from_client
+    response = llm_client.create(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/oai/client.py", line 1277, in create
+    response = client.create(params)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/oai/anthropic.py", line 746, in create
+    return self._create_standard(params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/oai/anthropic.py", line 751, in _create_standard
+    return self._create_streaming(params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/autogen/oai/anthropic.py", line 807, in _create_streaming
+    for event in stream:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/anthropic/_streaming.py", line 71, in __iter__
+    for item in self._iterator:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/anthropic/_streaming.py", line 93, in __stream__
+    for sse in iterator:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/anthropic/_streaming.py", line 75, in _iter_events
+    yield from self._decoder.iter_bytes(self.response.iter_bytes())
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/anthropic/_streaming.py", line 429, in iter_bytes
+    for chunk in self._iter_chunks(iterator):
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/anthropic/_streaming.py", line 440, in _iter_chunks
+    for chunk in iterator:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 342, in __iter__
+    raise exc
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/Uni/Udveksling/NLP/llm_chess960/.venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/claes/anaconda3/lib/python3.11/ssl.py", line 1263, in recv
+    return self.read(buflen)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/claes/anaconda3/lib/python3.11/ssl.py", line 1136, in read
+    return self._sslobj.read(len)
+           ^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

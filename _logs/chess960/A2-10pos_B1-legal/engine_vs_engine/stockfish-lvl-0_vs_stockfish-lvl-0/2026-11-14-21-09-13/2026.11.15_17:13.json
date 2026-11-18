@@ -1,0 +1,81 @@
+{
+    "time_started": "2026.11.15_17:13",
+    "winner": "Chess_Engine_Stockfish_White",
+    "reason": "Checkmate",
+    "number_of_moves": 75,
+    "player_white": {
+        "name": "Chess_Engine_Stockfish_White",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 0,
+        "make_move_count": 38,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 38,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 38,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 28,
+        "black": 7
+    },
+    "player_black": {
+        "name": "Chess_Engine_Stockfish_Black",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 0,
+        "make_move_count": 37,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 37,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 37,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.15\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"1-0\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1\"]\n\n1. Ng3 Ng6 2. e3 e5 3. d4 f6 4. a4 a5 5. c3 c6 \n6. f3 Nd6 7. e4 Qb6 8. Qc2 Bb3 9. Qe2 Bf7 10. Qd1 exd4 \n11. Qxd4 Qd8 12. c4 Ne5 13. f4 c5 14. Qd1 Nc6 15. Ra3 b6 \n16. Nf3 Ka7 17. Rd3 Bxc4 18. Rxc4 g5 19. Rxd6 Nd4 20. Rd5 Bg7 \n21. f5 Kb7 22. Nd2 g4 23. b3 h6 24. Qc1 b5 25. Qb2 Nc6 \n26. Rcxc5 d6 27. Rxb5+ Kc7 28. Bb6+ Kd7 29. Bxd8 Na7 30. Rb7+ Ke8 \n31. Bb5+ Nxb5 32. Rbxb5 Rc1+ 33. Kxc1 Rc8+ 34. Nc4 Rxc4+ 35. bxc4 Kxd8 \n36. Rb8+ Kc7 37. Qb6+ Kd7 38. Qxd6#  1-0",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 926,
+        "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1",
+        "legal_moves_enabled": true,
+        "comprehension_check": false,
+        "chess960_prompt_hint": true,
+        "max_failed_attempts": 3,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "CHESS_ENGINE_STOCKFISH",
+        "black_player_type": "CHESS_ENGINE_STOCKFISH",
+        "stockfish_level": 0,
+        "dragon_level": 0,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "checkmate",
+        "losing_side": "black"
+    },
+    "variant": "chess960",
+    "chess960_position": 926,
+    "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1"
+}

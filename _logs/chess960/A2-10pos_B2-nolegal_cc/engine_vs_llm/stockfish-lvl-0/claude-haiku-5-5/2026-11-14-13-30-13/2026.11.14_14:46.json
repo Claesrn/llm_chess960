@@ -1,0 +1,161 @@
+{
+    "time_started": "2026.11.14_14:46",
+    "winner": "Chess_Engine_Stockfish_White",
+    "reason": "Too many wrong actions",
+    "number_of_moves": 44,
+    "player_white": {
+        "name": "Chess_Engine_Stockfish_White",
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 0,
+        "get_legal_moves_count": 0,
+        "make_move_count": 22,
+        "accumulated_reply_time_seconds": 0.0,
+        "model": "N/A",
+        "turns": 22,
+        "illegal_attempts": [],
+        "illegal_attempts_by_type": {},
+        "first_attempt_total": 22,
+        "first_attempt_illegal": 0,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "material_count": {
+        "white": 26,
+        "black": 18
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "wrong_moves": 9,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "get_board_count": 23,
+        "get_legal_moves_count": 0,
+        "make_move_count": 30,
+        "accumulated_reply_time_seconds": 335.226,
+        "model": "claude-haiku-5-5",
+        "turns": 22,
+        "illegal_attempts": [
+            {
+                "ply": 24,
+                "side": "black",
+                "fen": "rk1Rn1b1/pp3p1p/P1p3p1/2b2q2/R4P2/1B4P1/1PP1P2P/1KQ1NN2 b q - 0 12",
+                "move": "e8f6",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 36,
+                "side": "black",
+                "fen": "B2k2b1/R4p1p/2pR2p1/5q2/5P2/1B4P1/1PPbP2P/1KQ5 b - - 0 18",
+                "move": "d2c1",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 38,
+                "side": "black",
+                "fen": "B3k1b1/R4p1p/2p1R1p1/5q2/5P2/1B4P1/1PPbP2P/1KQ5 b - - 2 19",
+                "move": "d2c1",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 40,
+                "side": "black",
+                "fen": "4k1b1/R6p/2B1p1p1/5q2/5P2/1B4P1/1PPbP2P/1KQ5 b - - 0 20",
+                "move": "d2c1",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 44,
+                "side": "black",
+                "fen": "R4kb1/7p/2B1p1p1/5q2/5P2/1B2b1P1/1PP1P2P/1K5Q b - - 4 22",
+                "move": "f5d3",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 44,
+                "side": "black",
+                "fen": "R4kb1/7p/2B1p1p1/5q2/5P2/1B2b1P1/1PP1P2P/1K5Q b - - 4 22",
+                "move": "f5g4",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 44,
+                "side": "black",
+                "fen": "R4kb1/7p/2B1p1p1/5q2/5P2/1B2b1P1/1PP1P2P/1K5Q b - - 4 22",
+                "move": "h7h5",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 44,
+                "side": "black",
+                "fen": "R4kb1/7p/2B1p1p1/5q2/5P2/1B2b1P1/1PP1P2P/1K5Q b - - 4 22",
+                "move": "g8f7",
+                "category": "leaves_king_in_check"
+            },
+            {
+                "ply": 44,
+                "side": "black",
+                "fen": "R4kb1/7p/2B1p1p1/5q2/5P2/1B2b1P1/1PP1P2P/1K5Q b - - 4 22",
+                "move": "h7h6",
+                "category": "leaves_king_in_check"
+            }
+        ],
+        "illegal_attempts_by_type": {
+            "leaves_king_in_check": 9
+        },
+        "first_attempt_total": 22,
+        "first_attempt_illegal": 5,
+        "format_normalizations": 0,
+        "disallowed_action_requests": 0
+    },
+    "usage_stats": {
+        "white": {
+            "total_cost": 0
+        },
+        "black": {
+            "total_cost": 0.0,
+            "claude-haiku-5-5": {
+                "cost": 0.0,
+                "prompt_tokens": 28451,
+                "completion_tokens": 64838,
+                "total_tokens": 93289
+            }
+        }
+    },
+    "pgn": "[Event \"Chess960 Game\"]\n[Date \"2026.11.14\"]\n[White \"Player White\"]\n[Black \"Player Black\"]\n[Result \"1-0\"]\n[Variant \"Chess960\"]\n[SetUp \"1\"]\n[FEN \"rkqrnnbb/pppppppp/8/8/8/8/PPPPPPPP/RKQRNNBB w KQkq - 0 1\"]\n\n1. a4 g6 2. d4 d5 3. g3 e5 4. dxe5 Bxe5 5. f4 Bg7 \n6. a5 Ne6 7. Bxd5 c6 8. Bb3 Nd4 9. Bxd4 Bxd4 10. a6 Qf5 \n11. Ra4 Bc5 12. Rxd8+ Kc7 13. Rd3 Nd6 14. Nd2 Bf2 15. axb7 Bxe1 \n16. bxa8=B Bxd2 17. Rxa7+ Kd8 18. Rxd6+ Ke8 19. Re6+ fxe6 20. Bxc6+ Kf8 \n21. Qh1 Be3 22. Ra8+  1-0",
+    "settings": {
+        "chess960": true,
+        "chess960_position": 911,
+        "starting_fen": "rkqrnnbb/pppppppp/8/8/8/8/PPPPPPPP/RKQRNNBB w KQkq - 0 1",
+        "legal_moves_enabled": false,
+        "comprehension_check": true,
+        "chess960_prompt_hint": true,
+        "max_failed_attempts": 5,
+        "max_llm_turns": 10,
+        "max_game_moves": 200,
+        "white_player_type": "CHESS_ENGINE_STOCKFISH",
+        "black_player_type": "LLM_BLACK",
+        "stockfish_level": 0,
+        "dragon_level": 0,
+        "engine_depth": null,
+        "engine_time_per_move": 0.1
+    },
+    "outcome": {
+        "loss_cause": "illegal_move_forfeit",
+        "losing_side": "black"
+    },
+    "comprehension": {
+        "black": {
+            "expected": "RKQRNNBB",
+            "answer": "Rank 8, from the a-file to the h-file: R, K, Q, R, N, N, B, B.\n\nBACK_RANK: RKQRNNBB",
+            "parsed": "RKQRNNBB",
+            "correct": true
+        }
+    },
+    "variant": "chess960",
+    "chess960_position": 911,
+    "starting_fen": "rkqrnnbb/pppppppp/8/8/8/8/PPPPPPPP/RKQRNNBB w KQkq - 0 1"
+}

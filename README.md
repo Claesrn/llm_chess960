@@ -103,7 +103,7 @@ Results notebook (figures + significance tests), after running `analyze_960.py`:
 uv sync --extra analysis
 uv run --with jupyterlab jupyter lab analysis_960.ipynb
 ```
-Covers win rate (95% Wilson CIs), loss causes, illegal moves per turn by type, first-attempt illegal rate, comprehension pass rate (and results on passing games only), move quality for plies 1-15 vs later, Elo vs Dragon, pairwise condition comparisons (Fisher / Mann-Whitney) and the engine-vs-engine baseline. Figures are saved to `_analysis/figures/`.
+`analyze_960.py` also writes `moves.csv` (per-move centipawn loss, for the opening-gap test) and `illegal_attempts.csv` (each illegal attempt, classified as a phantom-piece move from the standard setup, with a chance baseline from random Chess960 setups, and standard castling notation). The notebook covers win rate (95% Wilson CIs), loss causes, illegal moves per turn by type, first-attempt illegal rate, comprehension pass rate (and results on passing games only), move quality for plies 1-15 vs later, Elo vs Dragon, pairwise condition comparisons (Fisher / Mann-Whitney), the opening-gap difference-in-differences test, standard-pattern errors vs chance and the engine-vs-engine baseline. Figures are saved to `_analysis/figures/`.
 
 ### Multiple Games
 For benchmarking, run multiple simulations:

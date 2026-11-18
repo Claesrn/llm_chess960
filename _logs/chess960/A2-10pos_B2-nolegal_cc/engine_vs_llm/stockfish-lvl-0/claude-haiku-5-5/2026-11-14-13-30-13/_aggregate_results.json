@@ -1,0 +1,306 @@
+{
+    "run_metadata": {
+        "metadata": {
+            "time_started_formatted": "2026.11.14_13:30",
+            "log_folder_relative": "_logs/chess960/A2-10pos_B2-nolegal_cc/engine_vs_llm/stockfish-lvl-0/claude-haiku-5-5/2026-11-14-13-30-13",
+            "num_repetitions": 10,
+            "store_individual_logs": true,
+            "python_version": "3.11.4"
+        },
+        "player_types": {
+            "white_player_type": "CHESS_ENGINE_STOCKFISH",
+            "black_player_type": "LLM_BLACK"
+        },
+        "config": {
+            "enable_reflection": false,
+            "board_representation_mode": "UNICODE_ONLY",
+            "rotate_board_for_white": false,
+            "max_game_moves": 200,
+            "max_llm_turns": 10,
+            "max_failed_attempts": 5,
+            "throttle_delay": 1,
+            "dialog_turn_delay": 1,
+            "max_api_retries": 6,
+            "api_retry_delay": 60,
+            "random_print_board": false,
+            "remove_text": "^.*?(?:</think>|\u25c1/think\u25b7|</reasoning>)\\s*"
+        },
+        "chess_engines": {
+            "stockfish": {
+                "path": "/usr/local/bin/stockfish",
+                "reset_history": true,
+                "level": 0,
+                "time_per_move": 0.1
+            },
+            "dragon": {
+                "path": "./dragon/dragon-osx",
+                "reset_history": true,
+                "level": 0,
+                "time_per_move": 0.1
+            }
+        },
+        "llm_configs": {
+            "black": {
+                "model": "claude-haiku-5-5",
+                "api_type": "anthropic",
+                "max_tokens": 32768,
+                "api_key": "REDACTED",
+                "timeout": 1800
+            }
+        }
+    },
+    "variant": "chess960",
+    "condition": "A2-10pos_B2-nolegal_cc",
+    "experiment_settings": {
+        "chess960": true,
+        "positions": [
+            45,
+            177,
+            298,
+            397,
+            565,
+            793,
+            865,
+            911,
+            926,
+            939
+        ],
+        "seed": 960,
+        "legal_moves": false,
+        "variant_hint": true,
+        "comprehension_check": true,
+        "max_failed_attempts": 5,
+        "max_game_moves": 200,
+        "white_player_type": "CHESS_ENGINE_STOCKFISH",
+        "black_player_type": "LLM_BLACK",
+        "white_engine_level": 0,
+        "black_engine_level": 0,
+        "engine_time_per_move": 0.1,
+        "engine_depth": null
+    },
+    "loss_causes": {
+        "checkmate": 7,
+        "draw": 1,
+        "illegal_move_forfeit": 1,
+        "max_moves_draw": 1
+    },
+    "illegal_attempts_by_type": {
+        "white": {},
+        "black": {
+            "piece_movement": 4,
+            "wrong_piece_on_square": 9,
+            "leaves_king_in_check": 20
+        }
+    },
+    "comprehension_correct": {
+        "white": 0,
+        "black": 10
+    },
+    "total_games": 10,
+    "white_wins": 7,
+    "black_wins": 1,
+    "draws": 2,
+    "total_moves": 854,
+    "reasons": {
+        "Checkmate": 7,
+        "Insufficient material": 1,
+        "Too many wrong actions": 1,
+        "Max moves reached": 1
+    },
+    "player_white": {
+        "name": "Chess_Engine_Stockfish_White",
+        "model": "",
+        "total_material": 193,
+        "wrong_moves": 0,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "avg_material": 19.3,
+        "std_dev_material": 13.458165633630099
+    },
+    "player_black": {
+        "name": "Player_Black",
+        "model": "",
+        "total_material": 180,
+        "wrong_moves": 33,
+        "wrong_actions": 0,
+        "reflections_used": 0,
+        "reflections_used_before_board": 0,
+        "avg_material": 18.0,
+        "std_dev_material": 13.19090595827292
+    },
+    "games": [
+        {
+            "game": 1,
+            "chess960_position": 45,
+            "starting_fen": "nnqbrkbr/pppppppp/8/8/8/8/PPPPPPPP/NNQBRKBR w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 23,
+            "black_wrong_moves": 1,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 2,
+            "chess960_position": 177,
+            "starting_fen": "bnrbnkrq/pppppppp/8/8/8/8/PPPPPPPP/BNRBNKRQ w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 15,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 3,
+            "chess960_position": 298,
+            "starting_fen": "qnrkbbrn/pppppppp/8/8/8/8/PPPPPPPP/QNRKBBRN w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 171,
+            "black_wrong_moves": 2,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 4,
+            "chess960_position": 397,
+            "starting_fen": "qrnbnkbr/pppppppp/8/8/8/8/PPPPPPPP/QRNBNKBR w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 73,
+            "black_wrong_moves": 0,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 5,
+            "chess960_position": 565,
+            "starting_fen": "rnbbknrq/pppppppp/8/8/8/8/PPPPPPPP/RNBBKNRQ w KQkq - 0 1",
+            "result": "1/2-1/2",
+            "reason": "Insufficient material",
+            "loss_cause": "draw",
+            "losing_side": null,
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 144,
+            "black_wrong_moves": 6,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 6,
+            "chess960_position": 793,
+            "starting_fen": "rqkbbnrn/pppppppp/8/8/8/8/PPPPPPPP/RQKBBNRN w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 45,
+            "black_wrong_moves": 2,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 7,
+            "chess960_position": 865,
+            "starting_fen": "bqrbkrnn/pppppppp/8/8/8/8/PPPPPPPP/BQRBKRNN w KQkq - 0 1",
+            "result": "0-1",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "white",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 74,
+            "black_wrong_moves": 2,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 8,
+            "chess960_position": 911,
+            "starting_fen": "rkqrnnbb/pppppppp/8/8/8/8/PPPPPPPP/RKQRNNBB w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Too many wrong actions",
+            "loss_cause": "illegal_move_forfeit",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 44,
+            "black_wrong_moves": 9,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 9,
+            "chess960_position": 926,
+            "starting_fen": "rkrqnbbn/pppppppp/8/8/8/8/PPPPPPPP/RKRQNBBN w KQkq - 0 1",
+            "result": "1-0",
+            "reason": "Checkmate",
+            "loss_cause": "checkmate",
+            "losing_side": "black",
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 65,
+            "black_wrong_moves": 1,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        },
+        {
+            "game": 10,
+            "chess960_position": 939,
+            "starting_fen": "rkrnbqnb/pppppppp/8/8/8/8/PPPPPPPP/RKRNBQNB w KQkq - 0 1",
+            "result": "1/2-1/2",
+            "reason": "Max moves reached",
+            "loss_cause": "max_moves_draw",
+            "losing_side": null,
+            "comprehension": {
+                "black": true
+            },
+            "number_of_moves": 200,
+            "black_wrong_moves": 10,
+            "black_wrong_actions": 0,
+            "white_wrong_moves": 0,
+            "white_wrong_actions": 0
+        }
+    ],
+    "average_moves": 85.4,
+    "std_dev_moves": 63.93607919025237
+}
