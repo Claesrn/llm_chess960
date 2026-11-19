@@ -1,0 +1,7 @@
+model,panel,comparison,games,opening_ACPL,later_ACPL,DiD,ci_low,ci_high,p_bootstrap
+claude-haiku-5-5,B1-legal-moves | C1-random,A1 · standard start → A2 · Chess960,11 / 10,91 → 129,57 → 33,63.115570371735,-6.829116123765384,141.81575991238003,0.083
+claude-haiku-5-5,B1-legal-moves | C1-random,A1 · standard start → A2 · not told,11 / 9,91 → 112,57 → 68,10.29773107915522,-55.44718873191471,76.24262596712992,0.773
+claude-haiku-5-5,B1-legal-moves | C1-random,Plain chess → A2 · Chess960,10 / 10,118 → 129,19 → 33,-2.170890978645186,-82.52477945552002,75.21473534666801,0.94
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A1 · standard start → A2 · Chess960,10 / 10,61 → 134,84 → 80,77.79594920887425,13.42836800853172,136.70857446514543,0.018
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A1 · standard start → A2 · not told,10 / 10,61 → 157,84 → 76,104.89552481977523,44.81407406304497,154.41050939821375,0.002
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A1 · standard start → A2 · Chess960,10 / 10,88 → 98,10 → 40,-19.032581453634087,-66.20397412142967,23.306526864544644,0.423

@@ -1,0 +1,11 @@
+model,panel,start,castling,piece_movement,wrong_piece_on_square,leaves_king_in_check,missing_promotion,unparseable
+claude-haiku-5-5,B1-legal-moves | C1-random,standard-chess,0.0,0.003134796238244514,0.0,0.0,0.003134796238244514,0.0
+claude-haiku-5-5,B1-legal-moves | C1-random,A1-standard-pos518,0.0038314176245210726,0.007662835249042145,0.0038314176245210726,0.0,0.0,0.0
+claude-haiku-5-5,B1-legal-moves | C1-random,A2-chess960,0.0,0.0,0.005571030640668524,0.0,0.0,0.0
+claude-haiku-5-5,B1-legal-moves | C1-random,A2-chess960-uninformed,0.0,0.009966777408637873,0.0033222591362126247,0.0,0.0,0.0
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A1-standard-pos518,0.0018484288354898336,0.005545286506469501,0.0166358595194085,0.029574861367837338,0.0,0.0
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2-chess960,0.0035211267605633804,0.007042253521126761,0.028169014084507043,0.03169014084507042,0.0,0.0
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2-chess960-uninformed,0.0,0.002398081534772182,0.019184652278177457,0.019184652278177457,0.0,0.0
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A1-standard-pos518,0.0,0.02348993288590604,0.0,0.003355704697986577,0.0,0.0
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A2-chess960,0.0,0.00974025974025974,0.003246753246753247,0.0,0.0,0.0
+claude-haiku-5-5,B2-no-legal-moves | C2-stockfish-lvl0,A2-chess960,0.0,0.009433962264150943,0.02122641509433962,0.04716981132075472,0.0,0.0

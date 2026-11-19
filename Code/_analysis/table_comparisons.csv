@@ -1,0 +1,7 @@
+model,panel,comparison,n,win_rate,p_win,illegal/turn,p_illegal,ACPL,p_acpl
+claude-haiku-5-5,B1-legal-moves | C1-random,Plain chess → A1 · standard start,10 / 11,90% → 100%,0.47619047619047616,0.007 → 0.015,0.6715368107301403,41 → 71,0.4180519085356006
+claude-haiku-5-5,B1-legal-moves | C1-random,A1 · standard start → A2 · Chess960,11 / 10,100% → 90%,0.47619047619047616,0.015 → 0.007,0.3826864158399744,71 → 51,0.5974062696275562
+claude-haiku-5-5,B1-legal-moves | C1-random,A2 · Chess960 → A2 · not told,10 / 9,90% → 89%,1.0,0.007 → 0.014,0.27683012348500713,51 → 80,0.23644471557230384
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A1 · standard start → A2 · Chess960,10 / 10,20% → 10%,1.0,0.043 → 0.053,0.7546430167754016,79 → 110,0.18587673236587576
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2 · Chess960 → A2 · not told,10 / 10,10% → 0%,1.0,0.053 → 0.040,0.7281677610833472,110 → 111,0.7337299956962472
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A1 · standard start → A2 · Chess960,10 / 10,100% → 100%,1.0,0.021 → 0.010,0.2322841305781137,28 → 50,0.16197241048012612

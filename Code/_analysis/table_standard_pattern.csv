@@ -1,0 +1,7 @@
+model,panel,start,attempts,observed,expected_by_chance,observed_share,chance_share,ratio,p_one_sided
+claude-haiku-5-5,B1-legal-moves | C1-random,A2-chess960,2,0,0.0,0.0,0.0,,1.0
+claude-haiku-5-5,B1-legal-moves | C1-random,A2-chess960-uninformed,4,0,0.0,0.0,0.0,,1.0
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2-chess960,20,1,0.44,0.05,0.022,2.272727272727273,0.44
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2-chess960-uninformed,17,0,0.28,0.0,0.01647058823529412,0.0,1.0
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A2-chess960,4,0,0.0,0.0,0.0,,1.0
+claude-haiku-5-5,B2-no-legal-moves | C2-stockfish-lvl0,A2-chess960,33,2,2.13,0.06060606060606061,0.06454545454545454,0.9389671361502347,0.6967007101

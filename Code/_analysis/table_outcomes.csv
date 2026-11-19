@@ -1,0 +1,11 @@
+model,panel,start,games,wins,draws,losses,win_rate,win_lo,win_hi
+claude-haiku-5-5,B1-legal-moves | C1-random,Plain chess,10,9,1,0,0.9,0.5958436145024278,0.9821242504842788
+claude-haiku-5-5,B1-legal-moves | C1-random,A1 · standard start,11,11,0,0,1.0,0.7411599827511859,1.0
+claude-haiku-5-5,B1-legal-moves | C1-random,A2 · Chess960,10,9,1,0,0.9,0.5958436145024278,0.9821242504842788
+claude-haiku-5-5,B1-legal-moves | C1-random,A2 · not told,9,8,1,0,0.8888888888888888,0.5649937852319399,0.9801096286728695
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A1 · standard start,10,2,0,8,0.2,0.056680947980693314,0.5098431532792765
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2 · Chess960,10,1,0,9,0.1,0.01787574951572113,0.4041563854975721
+claude-haiku-5-5,B1-legal-moves | C2-stockfish-lvl0,A2 · not told,10,0,2,8,0.0,0.0,0.2775401687666166
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A1 · standard start,10,10,0,0,1.0,0.7224598312333834,1.0
+claude-haiku-5-5,B2-no-legal-moves | C1-random,A2 · Chess960,10,10,0,0,1.0,0.7224598312333834,1.0
+claude-haiku-5-5,B2-no-legal-moves | C2-stockfish-lvl0,A2 · Chess960,10,1,2,7,0.1,0.01787574951572113,0.4041563854975721
