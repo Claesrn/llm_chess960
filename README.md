@@ -1,3 +1,9 @@
+> [!NOTE]
+> **This is a fork of [maxim-saplin/llm_chess](https://github.com/maxim-saplin/llm_chess), used for my NLP course project at the University of Milan.**
+>
+> The project combines the LLM Chess benchmark with the counterfactual-task method of Wu et al., *Reasoning or Reciting?* (NAACL 2024). It compares how LLMs play standard chess and Chess960, to test whether they reason about the game or recite memorised opening theory.
+>
+
 # LLM Chess: Benchmarking Reasoning and Instruction-Following in LLMs
 
 [![Leaderboard](https://img.shields.io/badge/Live%20Leaderboard-%20🏆-blueviolet)](https://maxim-saplin.github.io/llm_chess/)
